@@ -67,31 +67,3 @@
 
     </div>
 </div>
-
-<?php
-
-// var_dump(press_net_subscribe_user_post_is('subscribe_media'));
-
-// $subscribe_media = get_user_meta( $current_user->ID, 'subscribe_media' );
-// var_dump($subscribe_media);
-// echo '<br>';
-// if (in_array($post->ID, $subscribe_media[0])) {
-//     print_r('yes!');
-// } else {
-//     print_r('no');
-// }
-// echo '<br>';
-// if ( count($subscribe_media[0]) == 1 ) {
-//     echo '1';
-// }
-// foreach($subscribe_media[0] as $key => $item){
-//     if ($item == 146){
-//         unset($subscribe_media[0][$key]);
-//     }
-// }
-// echo '<br>';
-// if ( count($subscribe_media[0]) > 1 ) {
-//     echo 'Mnogo';
-// }
-// echo '<br>';
-// var_dump($subscribe_media);
