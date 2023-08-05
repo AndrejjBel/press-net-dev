@@ -640,7 +640,7 @@ function press_net_subscribe_user_post() {
     wp_die();
 }
 
-function press_net_subscribe_user_post_is($post_id, $post_type) {
+function press_net_subscribe_user_post_single_is($post_id, $post_type) {
     global $current_user;
     $subscribe_post = get_user_meta( $current_user->ID, $post_type );
     if ( $subscribe_post ) {
@@ -653,5 +653,26 @@ function press_net_subscribe_user_post_is($post_id, $post_type) {
         }
     } else {
         return ['subscribe' => ' active', 'unfollow' => ''];
+    }
+}
+
+function press_net_subscribe_user_post_archive_is($post_id, $post_type) {
+    global $current_user;
+    $subscribe_post = get_user_meta( $current_user->ID, $post_type );
+    if ( $post_type == 'subscribe_media' ) {
+        $title_sub = 'Subscribe to this media';
+        $title_unf = 'Unfollow this media';
+    } elseif ( $post_type == 'subscribe_request' ) {
+        $title_sub = 'Subscribe to this request';
+        $title_unf = 'Unfollow this request';
+    }
+    if ( $subscribe_post ) {
+        if (in_array($post_id, $subscribe_post[0])) {
+            return ['btn_class' => ' active', 'title' => $title_unf];
+        } else {
+            return ['btn_class' => '', 'title' => $title_sub];
+        }
+    } else {
+        return ['btn_class' => '', 'title' => $title_sub];
     }
 }

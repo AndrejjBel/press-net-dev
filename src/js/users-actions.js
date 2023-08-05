@@ -25,11 +25,25 @@ const subscribePost = () => {
                             data = JSON.parse(data)
                             if ( data.class == 'success' ) {
                                 console.dir('Yes');
-                                // document.querySelector('.modal__title').style.display = 'none'
-                                // document.querySelector('.request-call-form').innerHTML = '<h3>Thank you, we will contact you shortly!</h3>'
-                                btn.querySelectorAll('span.subscr').forEach((item) => {
-                                    item.classList.toggle('active');
-                                });
+                                if ( btn.dataset.subscr == 'single' ) {
+                                    btn.querySelectorAll('span.subscr').forEach((item) => {
+                                        item.classList.toggle('active');
+                                    });
+                                } else if ( btn.dataset.subscr == 'archive' ) {
+                                    btn.classList.toggle('active');
+                                    if ( btn.title == 'Subscribe to this media' ) {
+                                        btn.title = 'Unfollow this media';
+                                    } else if ( btn.title == 'Unfollow this media' ) {
+                                        btn.title = 'Subscribe to this media';
+                                    }
+
+                                    if ( btn.title == 'Subscribe to this request' ) {
+                                        btn.title = 'Unfollow this request';
+                                    } else if ( btn.title == 'Unfollow this request' ) {
+                                        btn.title = 'Subscribe to this request';
+                                    }
+                                }
+
                             } else {
                                 console.dir(data);
                             }
@@ -42,7 +56,7 @@ const subscribePost = () => {
                 });
 
                 btn.style.pointerEvents = ''
-            })            
+            })
         });
 
     }

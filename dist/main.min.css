@@ -1800,6 +1800,8 @@ form#author_nonce {
         height: 32px;
         color: #8c8c8c;
         border-radius: 4px; }
+        .archive-posts__item__buttons button.active {
+          color: var(--current-menu-item); }
         .archive-posts__item__buttons button:hover {
           color: var(--text-color, #161616);
           background: #e8eef6; }
@@ -1949,6 +1951,8 @@ form#author_nonce {
           height: 32px;
           color: #8c8c8c;
           border-radius: 4px; }
+          .single-request__mass-media-information__title__buttons button.active {
+            color: var(--current-menu-item); }
           .single-request__mass-media-information__title__buttons button:hover {
             color: var(--text-color, #161616);
             background: #e8eef6; }
