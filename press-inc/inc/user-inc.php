@@ -640,13 +640,18 @@ function press_net_subscribe_user_post() {
     wp_die();
 }
 
-function press_net_subscribe_user_post_is($post_type) {
-    global $current_user, $post;
+function press_net_subscribe_user_post_is($post_id, $post_type) {
+    global $current_user;
     $subscribe_post = get_user_meta( $current_user->ID, $post_type );
-    if (in_array($post->ID, $subscribe_post[0])) {
-        return true;
+    if ( $subscribe_post ) {
+        if (in_array($post_id, $subscribe_post[0])) {
+            // return true;
+            return ['subscribe' => '', 'unfollow' => ' active'];
+        } else {
+            // return false;
+            return ['subscribe' => ' active', 'unfollow' => ''];
+        }
     } else {
-        return false;
+        return ['subscribe' => ' active', 'unfollow' => ''];
     }
-    // wp_die();
 }

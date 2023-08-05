@@ -1,4 +1,6 @@
-<?php global $authordata, $current_user; ?>
+<?php global $authordata, $current_user;
+['subscribe' => $subscribe, 'unfollow' => $unfollow] = press_net_subscribe_user_post_is($post->ID, 'subscribe_media');
+?>
 <div class="single-mass-media">
     <div class="single-mass-media__basic-information block-item">
         <div class="single-mass-media__basic-information__title">
@@ -38,8 +40,8 @@
                 id="btn-subscribe-media"
                 class="button btn-primary-smail mb10 js-btn-subscribe"
                 data-post="<?php echo $post->ID;?>" data-post-type="subscribe_media" data-subscr="yes">
-                <span class="subscr subscribe active">Subscribe to this media</span>
-                <span class="subscr unfollow">Unfollow this media</span>
+                <span class="subscr subscribe<?php echo $subscribe;?>">Subscribe to this media</span>
+                <span class="subscr unfollow<?php echo $unfollow;?>">Unfollow this media</span>
             </button>
 
             <button type="button" name="btn-invite-editorial" id="btn-invite-editorial" class="button btn-primary-smail-revers">

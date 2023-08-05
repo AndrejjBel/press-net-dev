@@ -41,8 +41,8 @@ const subscribePost = () => {
                     });
                 });
 
-            })
-            btn.style.pointerEvents = ''
+                btn.style.pointerEvents = ''
+            })            
         });
 
     }
