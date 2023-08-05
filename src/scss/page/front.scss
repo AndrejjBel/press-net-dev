@@ -1,0 +1,189 @@
+.home .site-header.color-home {
+    background: transparent;
+
+    & .header-generale__branding h1 {
+        color: white;
+    }
+
+    & .primary-nav-menu ul a {
+        color: white;
+
+        &:hover {
+            color: #FFDD76;
+        }
+    }
+
+    & .menu-toggle svg path {
+        fill: white;
+    }
+}
+
+.front-page {
+
+    &__section {
+
+        &__title {
+            font-weight: 600;
+            font-size: 32px;
+            text-align: center;
+            color: #3F4354;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 70px;
+        }
+
+        &.tools {
+            padding-top: 70px;
+            padding-bottom: 100px;
+        }
+    }
+
+    & .hero {
+        margin-top: -80px;
+        padding-top: 120px;
+        padding-bottom: 80px;
+        background: url(./img/page/front/index-page-1-circle.png) calc(50% + 140px * 2) -10px no-repeat,
+        url(./img/page/front/index-vector-1.png) calc(50% + 400px * 2) top no-repeat,
+        url(./img/page/front/index-vector-2.png) calc(50% + 355px * 2) 70px no-repeat,
+        linear-gradient(104.14deg,#1A22D7 8.46%,#6946CF 95.47%);
+
+        &__content {
+            width: 140%;
+            display: flex;
+            gap: 48px;
+            max-width: 1486px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            @media (max-width: 999px) {
+                width: 100%;
+            }
+
+            &__text {
+                width: 50%;
+                // width: calc((100% - 48px) / 2);
+
+                @media (max-width: 1199px) {
+                    width: 40%;
+                }
+
+                @media (max-width: 999px) {
+                    width: 100%;
+                }
+
+                &__title h1 {
+                    font-weight: 800;
+                    font-size: 50px;
+                    line-height: 60px;
+                    color: #fff;
+                    margin-bottom: 32px;
+                }
+
+                &__subtitle {
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #fff;
+                    margin-bottom: 64px;
+                }
+
+                &__button button {
+                    font-size: 18px;
+                    color: #000;
+                    background-color: #FFDD76;
+                }
+            }
+
+            &__img {
+                width: 60%;
+                // width: calc((100% - 48px) / 2);
+
+                @media (max-width: 999px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    & .tools {
+
+        &.tools-number {
+            background-color: #F3F6FC;
+            padding: 70px 0;
+        }
+
+        &__items {
+            max-width: 1220px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-left: auto;
+            margin-right: auto;
+
+            &__item {
+                width: calc((100% - 40px) / 3);
+                text-align: center;
+
+                @media (max-width: 999px) {
+                    width: calc((100% - 20px) / 2);
+                }
+
+                @media (max-width: 699px) {
+                    width: 100%;
+                }
+
+                &__icon {
+                    margin-bottom: 30px;
+                }
+
+                &__number {
+                    font-weight: 600;
+                    font-size: 42px;
+                    color: #3F4354;
+                }
+
+                &__text {
+
+                    &__title {
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 26px;
+                        color: #333;
+                        margin-bottom: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    & .informations {
+        padding-top: 170px;
+
+        &__items {
+            display: flex;
+            gap: 20px;
+            padding-bottom: 80px;
+
+            &__item {
+                width: calc((100% - 20px) / 2);
+
+                &__title {
+                    font-weight: 600;
+                    font-size: 32px;
+                    color: #3F4354;
+                }
+
+                &__text {
+
+                    & ul {
+                        list-style: disc;
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

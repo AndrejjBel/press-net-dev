@@ -1,0 +1,19 @@
+// Base
+@import "./src/scss/base/vars";
+@import "./src/scss/base/colors";
+@import "./src/scss/base/base";
+@import "./src/scss/base/header";
+@import "./src/scss/base/footer";
+@import "./src/scss/base/form";
+
+// Page
+@import "./src/scss/page/generale";
+@import "./src/scss/page/front";
+@import "./src/scss/page/login-register-page";
+@import "./src/scss/page/author";
+@import "./src/scss/page/archives";
+@import "./src/scss/page/singles";
+
+// Sections
+@import "./src/scss/sections/generale";
+@import "./src/scss/sections/tab-user";

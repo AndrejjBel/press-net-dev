@@ -1,0 +1,387 @@
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+@media (max-width: 93.6875em) {
+    html {
+        font-size: 56.25%;
+    }
+}
+@media (max-width: 74.9375em) {
+    html {
+        font-size: 50%;
+    }
+}
+@media (max-width: 61.94em) {
+    html {
+        font-size: 43.75%;
+    }
+}
+@media (max-width: 47.94em) {
+    html {
+        font-size: 37.5%;
+    }
+}
+
+body {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    color: #161616;
+    line-height: 1.875;
+    background-color: #fff;
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    color: #002257;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+@media (max-width: 47.94em) {
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        margin-bottom: 10px;
+    }
+}
+
+h1, .h1 {
+    font-size: 36px;
+}
+@media (max-width: 74.9375em) {
+    h1, .h1 {
+        font-size: 30px;
+    }
+}
+
+h2, .h2 {
+    font-size: 30px;
+}
+@media (max-width: 74.9375em) {
+    h2, .h2 {
+        font-size: 24px;
+    }
+}
+
+h3, .h3 {
+    font-size: 24px;
+}
+@media (max-width: 74.9375em) {
+    h3, .h3 {
+        font-size: 20px;
+    }
+}
+
+h4, .h4 {
+    font-size: 22px;
+}
+@media (max-width: 74.9375em) {
+    h4, .h4 {
+        font-size: 18px;
+    }
+}
+
+h5, .h5 {
+    font-size: 20px;
+}
+@media (max-width: 74.9375em) {
+    h5, .h5 {
+        font-size: 16px;
+    }
+}
+
+h6, .h6 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 16px;
+    color: #161616;
+    font-weight: 400;
+    margin: 0 0 15px;
+    line-height: 1.875;
+}
+@media (max-width: 47.94em) {
+    p {
+        margin: 0 0 10px;
+    }
+}
+p:last-child {
+    margin-bottom: 0;
+}
+p:only-child {
+    margin-bottom: 0;
+}
+
+blockquote:last-child {
+    margin-bottom: 0;
+}
+
+blockquote:only-child {
+    margin-bottom: 0;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #002257;
+    text-decoration: underline;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .slick-slide {
+    outline: none;
+}
+
+/*****************************
+01 - Base - Typography
+*****************************/
+.heading__primary {
+    font-size: 6.5rem;
+    line-height: 1.154;
+}
+
+.heading__secondary {
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+@media (max-width: 61.94em) {
+    .heading__secondary {
+        font-size: 35px;
+    }
+}
+@media (max-width: 47.94em) {
+    .heading__secondary {
+        font-size: 30px;
+    }
+}
+.heading__secondary:after {
+    width: 35px;
+    height: 5px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -ms-border-radius: 35px;
+    -o-border-radius: 35px;
+    border-radius: 35px;
+}
+.heading__secondary--sub {
+    color: #979797;
+}
+
+.lh-1 {
+    line-height: 1;
+}
+
+.lh-1pt5 {
+    line-height: 1.5;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    &-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--bg-header-color);
+        transition: 0.3s all;
+        z-index: 9;
+    }
+
+    &-main {}
+
+    &-footer {
+        margin-top: auto;
+        background: var(--bg-footer-color);
+    }
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+
+    @media (min-width: 1400px) {
+        max-width: 80%;
+    }
+
+    @media (min-width: 2500px) {
+        max-width: 70%;
+    }
+}
+
+/* Стили для модальных окон */
+.modal {
+   /* Скрываем окна  */
+   opacity: 0;
+   visibility: hidden;
+
+   /*  Установаем ширину окна  */
+   width: 100%;
+   max-width: 500px;
+   height: 0;
+
+   /*  Центрируем и задаем z-index */
+   position: absolute;
+   top: 0;
+   left: 50%;
+   transform: translate(-50%, 2%);
+   z-index: 950; /* Должен быть выше чем у подложки*/
+
+   /*  Побочные стили   */
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+   text-align: center;
+   padding: 50px 30px;
+   border-radius: 3px;
+   background-color: #fff;
+   transition: 0.3s all;
+}
+
+.modal-based-theme h3 {
+    font-weight: 700;
+}
+
+.modal-based-theme #modal-post-title {
+    font-weight: 700;
+}
+
+.modal-content-btn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-content-btn #yes {
+    background: green;
+    font-weight: 600;
+}
+
+.modal-content-btn #yes:hover {
+    opacity: 0.8;
+}
+
+.modal-content-btn #no {
+    background: red;
+    font-weight: 600;
+}
+
+.modal-content-btn #no:hover {
+    opacity: 0.8;
+}
+
+/* Стили для активных классов подложки и окна */
+.modal.active {
+   opacity: 1;
+   visibility: visible;
+   height: auto;
+}
+
+.overlay.active{
+   opacity: 1;
+   visibility: visible;
+}
+
+/* Стили для кнопки закрытия */
+.modal__cross {
+   width: 15px;
+   height: 15px;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   fill: #444;
+   cursor: pointer;
+}
+
+@media (max-width: 539px) {
+	.modal {
+	   /* max-width: 400px; */
+	   max-width: calc(100% - 30px);
+	}
+}
+
+@media (max-width: 439px) {
+	.modal {
+	   /* max-width: 300px; */
+	   padding: 30px 20px;
+	}
+
+	.modal__cross {
+	   top: 10px;
+	   right: 10px;
+	}
+
+	.modal-based-theme h3 {
+		font-size: 20px;
+	}
+
+	.modal-based-theme .modal-content-btn a {
+		font-size: 14px;
+		padding: 6px 10px;
+	}
+}
