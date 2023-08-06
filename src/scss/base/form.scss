@@ -330,6 +330,8 @@ textarea.textarea {
     &__options {
         position: absolute;
         width: 100%;
+        max-height: 248px;
+        overflow: auto;
         top: 44px;
         left: 0;
         border: 1px solid #ececec;

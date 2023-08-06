@@ -1,4 +1,4 @@
-function receivingPost(postType, orderbyCust, orderCust) {
+function receivingPost(postType, orderbyCust, orderCust, input, itemDiv) {
     const registerPage = document.querySelector('#register-page')
     if ( registerPage ) {
         jQuery(document).ready( function($){
@@ -11,15 +11,70 @@ function receivingPost(postType, orderbyCust, orderCust) {
                     orderby: orderbyCust,
                     order: orderCust
                 },
-                // dataType: "json",
                 success: function (data) {
-                    console.dir(data);
-                    // localStorage.setItem('glempAll', JSON.stringify(data));
+                    let dataJs = JSON.parse(data);
+                    renderFiltrItems(dataJs, itemDiv);
+                    filtrItemsSearch(input, dataJs, itemDiv);
+                    // localStorage.setItem('companyItems', JSON.stringify(dataJs));
                 },
                 error: function (jqXHR, text, error) {}
             });
         });
     }
 }
-// receivingPost('company', '', '');
-// receivingPost('mass-media', '', '');
+// const optionsCompany = document.querySelector('.field-select__options.options-company')
+// const companyName = document.querySelector('#company_name')
+// const optionsMedia = document.querySelector('.field-select__options.options-media')
+// const mediaName = document.querySelector('#media_name')
+// receivingPost('company', '', '', companyName, optionsCompany);
+// receivingPost('mass-media', '', '', mediaName, optionsMedia);
+
+const renderItems = () => {
+    const registerPage = document.querySelector('#register-page')
+    if ( registerPage ) {
+        const optionsCompany = document.querySelector('.field-select__options.options-company')
+        const companyName = document.querySelector('#company_name')
+        const optionsMedia = document.querySelector('.field-select__options.options-media')
+        const mediaName = document.querySelector('#media_name')
+        receivingPost('company', '', '', companyName, optionsCompany);
+        receivingPost('mass-media', '', '', mediaName, optionsMedia);
+    }
+}
+renderItems();
+
+function renderFiltrItems(items, itemDiv) {
+    itemDiv.innerHTML = '';
+    items.forEach((item) => {
+        itemDiv.insertAdjacentHTML(
+            "beforeend",
+            `<span data-post-id="${item.id}">${item.title}</span>`
+        )
+    });
+    fieldSelectProces( itemDiv.children );
+}
+
+function filtrItemsSearch(input, items, itemDiv) {
+    const inputIt = input
+    if (input) {
+        inputIt.addEventListener('input', (e) => {
+            const newItems = items.filter((item) => {
+                return item.title.toLowerCase().includes(e.target.value.toLowerCase())
+            })
+            renderFiltrItems(newItems, itemDiv);
+        })
+    }
+}
+
+function fieldSelectProces( items ) {
+    for (const node of items) {
+        node.addEventListener('click', function() {
+            node.parentElement.previousElementSibling.value = node.innerText
+            if ( node.dataset.termId ) {
+                node.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.value = node.dataset.termId
+            }
+            if ( node.dataset.postId ) {
+                node.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.value = node.dataset.postId
+            }
+        })
+    }
+}

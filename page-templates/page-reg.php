@@ -65,9 +65,9 @@ if ( is_user_logged_in() ) { ?>
                                 <span class="field-group__title__required">*</span>
                             </div>
                             <div class="input-group field-select">
-                                <input type="text" class="input" name="company_name" id="company_name" placeholder="Company" value="" required />
+                                <input type="text" class="input" name="company_name" id="company_name" placeholder="Company" value="" required autocomplete="off" />
                                 <div class="field-select__options options-company">
-                                    <?php press_net_user_media_parent_list('company'); ?>
+                                    <?php //press_net_user_media_parent_list('company'); ?>
                                 </div>
                             </div>
                             <span class="field-group__warning-input">Field is required</span>
@@ -148,9 +148,9 @@ if ( is_user_logged_in() ) { ?>
                                 <span class="field-group__title__required">*</span>
                             </div>
                             <div class="input-group field-select">
-                                <input type="text" class="input" name="media_name" id="media_name" placeholder="Media" value="" />
+                                <input type="text" class="input" name="media_name" id="media_name" placeholder="Media" value="" autocomplete="off" />
                                 <div class="field-select__options options-media">
-                                    <?php press_net_user_media_parent_list(); ?>
+                                    <?php //press_net_user_media_parent_list(); ?>
                                 </div>
                             </div>
                             <span class="field-group__warning-input">Field is required</span>
@@ -347,11 +347,11 @@ if ( is_user_logged_in() ) { ?>
                     <p>To complete the registration, you must confirm your E-mail (Check your spam folder).</p>
                     <p>An email with instructions has been sent to the email address you provided during registration.</p>
                 </div>
-                <a href="/" class="home">Home</a>
+                <!-- <a href="/" class="home">Home</a> -->
             </div>
             <div class="notif-custom-reg"></div>
 
-            <!-- <a href="/" class="home">Home</a> -->
+            <a href="/" class="home">Home</a>
         </div>
 
     </div>

@@ -245,10 +245,26 @@
         opacity: 0;
         height: 0;
 
+        & .welcome-text {
+            height: 0;
+        }
+
+        & p {
+            margin: 0;
+        }
+
         &.active {
             visibility: visible;
             opacity: 1;
             height: fit-content;
+        }
+
+        &.active .welcome-text {
+            height: auto;
+        }
+
+        &.active p {
+            margin: 0 0 15px;
         }
     }
 
