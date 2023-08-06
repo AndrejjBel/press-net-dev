@@ -44,7 +44,7 @@ renderItems();
 
 function renderFiltrItems(items, itemDiv) {
     itemDiv.innerHTML = '';
-    if ( items.length > 0 ) {
+    if ( items ) {
         items.forEach((item) => {
             itemDiv.insertAdjacentHTML(
                 "beforeend",
