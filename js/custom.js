@@ -52,12 +52,10 @@ function renderFiltrItems(items, itemDiv) {
             )
         });
     } else {
-        items.forEach((item) => {
-            itemDiv.insertAdjacentHTML(
-                "beforeend",
-                `<span data-post-id="no">No items</span>`
-            )
-        });
+        itemDiv.insertAdjacentHTML(
+            "beforeend",
+            `<span data-post-id="no">No items</span>`
+        );
     }
     fieldSelectProces( itemDiv.children );
 }
