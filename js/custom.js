@@ -44,12 +44,21 @@ renderItems();
 
 function renderFiltrItems(items, itemDiv) {
     itemDiv.innerHTML = '';
-    items.forEach((item) => {
-        itemDiv.insertAdjacentHTML(
-            "beforeend",
-            `<span data-post-id="${item.id}">${item.title}</span>`
-        )
-    });
+    if ( items.length > 0 ) {
+        items.forEach((item) => {
+            itemDiv.insertAdjacentHTML(
+                "beforeend",
+                `<span data-post-id="${item.id}">${item.title}</span>`
+            )
+        });
+    } else {
+        items.forEach((item) => {
+            itemDiv.insertAdjacentHTML(
+                "beforeend",
+                `<span data-post-id="no">No items</span>`
+            )
+        });
+    }
     fieldSelectProces( itemDiv.children );
 }
 
