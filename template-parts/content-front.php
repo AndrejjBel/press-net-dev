@@ -5,7 +5,7 @@
                 <div class="hero__content__text__title">
                     <h1>Service of journalistic requests</h1>
                 </div>
-                <div class="hero__content__text__subtitle">On Press network, journalists publish requests for comments and invoices for upcoming publications, experts respond and receive media mentions.</div>
+                <div class="hero__content__text__subtitle">On FirsthandOpinion, journalists publish requests for comments and invoices for upcoming publications, experts respond and receive media mentions.</div>
                 <div class="hero__content__text__button">
                     <button type="button" name="button" class="btn-primary">Free registration</button>
                 </div>
@@ -63,21 +63,21 @@
             <div class="tools__items__item">
                 <div class="tools__items__item__number">5200</div>
                 <div class="tools__items__item__text">
-                    <div class="tools__items__item__text__subtitle">Media places requests on Press network. This is almost half of the editorial offices of the country!</div>
+                    <div class="tools__items__item__text__subtitle">Media places requests on FirsthandOpinion. This is almost half of the editorial offices of the country!</div>
                 </div>
             </div>
 
             <div class="tools__items__item">
                 <div class="tools__items__item__number">200 000</div>
                 <div class="tools__items__item__text">
-                    <div class="tools__items__item__text__subtitle">comments were sent by experts to the media via Press network</div>
+                    <div class="tools__items__item__text__subtitle">comments were sent by experts to the media via FirsthandOpinion</div>
                 </div>
             </div>
 
             <div class="tools__items__item">
                 <div class="tools__items__item__number">47 000</div>
                 <div class="tools__items__item__text">
-                    <div class="tools__items__item__text__subtitle">publications and TV shows published with the participation of Press network since 2014</div>
+                    <div class="tools__items__item__text__subtitle">publications and TV shows published with the participation of FirsthandOpinion since 2014</div>
                 </div>
             </div>
         </div>
