@@ -136,6 +136,26 @@ const fieldSelectProcessing = () => {
 }
 fieldSelectProcessing()
 
+const inputSearchIcons = () => {
+    const inputSearchGroup = document.querySelectorAll('.input-search-group')
+    if ( inputSearchGroup.length > 0 ) {
+        inputSearchGroup.forEach((item) => {
+            item.children[0].addEventListener('input', function() {
+                if ( item.children[0].value ) {
+                    item.children[1].classList.add('active')
+                } else {
+                    item.children[1].classList.remove('active')
+                }
+            })
+            item.children[1].addEventListener('click', function() {
+                item.children[0].value = ''
+                item.children[1].classList.remove('active')
+            })
+        });
+    }
+}
+inputSearchIcons()
+
 function setRequired( inputsDivForm, inputsDivName ) {
     let inputsForm = inputsDivForm.querySelectorAll('input')
     inputsForm.forEach((input) => {

@@ -382,3 +382,28 @@ textarea.textarea {
         }
     }
 }
+
+.input-search-group {
+    position: relative;
+
+    & input {}
+
+    & .input-clear-icon {
+        display: none;
+        position: absolute;
+        top: 12px;
+        right: 38px;
+        cursor: pointer;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    & .input-search-icon {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        cursor: pointer;
+    }
+}

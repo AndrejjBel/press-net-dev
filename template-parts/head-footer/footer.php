@@ -57,4 +57,7 @@
 
 <div class="overlay js-overlay-modal"></div>
 
-<?php get_template_part( 'template-parts/popup/add-request' );?>
+<?php
+get_template_part( 'template-parts/popup/add-request' );
+get_template_part( 'template-parts/popup/assign-work-journalists' );
+get_template_part( 'template-parts/popup/invite-employee' );

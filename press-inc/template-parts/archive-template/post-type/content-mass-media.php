@@ -18,7 +18,9 @@
         <?php press_net_meta_smi();?>
     </div>
     <div class="archive-posts__item__buttons">
-        <button type="button" name="button" title="Order advertising in this media">
+        <button type="button" name="button" class="js-assign-work js-open-modal"
+            title="Order advertising in this media"
+            data-modal="assign-work-journalists" data-overlay="all" data-post="<?php echo $post->ID;?>">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM9 12h6M12 9v6"></path>
             </svg>

@@ -283,3 +283,48 @@ function press_net_media_company_list_json() {
     echo $post_arr_fin;
     wp_die();
 }
+
+function press_net_post_list_json() { // $post_type='mass-media'
+    $posts_media = get_posts( array(
+    	'numberposts' => -1,
+    	'orderby'     => 'title', // title, date
+    	'order'       => 'ASC', // ASC, DESC
+    	'post_type'   => 'mass-media',
+    	'suppress_filters' => true,
+    ) );
+    global $post;
+    if ( count($posts_media) > 0 ) {
+        $posts_media_arr = [];
+        foreach( $posts_media as $post ){
+        	setup_postdata( $post );
+        	$posts_media_arr[] = [
+                'id' => $post->ID,
+                'title' => get_the_title($post->ID)
+            ];
+        }
+    }
+    wp_reset_postdata();
+    $posts_company = get_posts( array(
+    	'numberposts' => -1,
+    	'orderby'     => 'title', // title, date
+    	'order'       => 'ASC', // ASC, DESC
+    	'post_type'   => 'company',
+    	'suppress_filters' => true,
+    ) );
+    global $post;
+    if ( count($posts_company) > 0 ) {
+        $posts_company_arr = [];
+        foreach( $posts_company as $post ){
+        	setup_postdata( $post );
+        	$posts_company_arr[] = [
+                'id' => $post->ID,
+                'title' => get_the_title($post->ID)
+            ];
+        }
+    }
+    wp_reset_postdata();
+    $posts_media_fin = json_encode($posts_media_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    $posts_company_fin = json_encode($posts_company_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    return json_encode(array('media' => $posts_media_fin, 'company' => $posts_company_fin));
+    wp_die();
+}

@@ -228,6 +228,9 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 .lh-1pt5 {
   line-height: 1.5; }
 
+.ta-center {
+  text-align: center; }
+
 .site {
   display: flex;
   flex-direction: column;
@@ -281,9 +284,9 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   height: 0;
   /*  Центрируем и задаем z-index */
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 2%);
+  transform: translate(-50%, -50%);
   z-index: 950;
   /* Должен быть выше чем у подложки*/
   /*  Побочные стили   */
@@ -291,8 +294,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   text-align: center;
   padding: 50px 30px;
   border-radius: 3px;
-  background-color: #fff;
-  transition: 0.3s all; }
+  background-color: #fff; }
 
 .modal-based-theme h3 {
   font-weight: 700; }
@@ -1100,6 +1102,22 @@ textarea.textarea {
       visibility: visible;
       opacity: 1; }
 
+.input-search-group {
+  position: relative; }
+  .input-search-group .input-clear-icon {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 38px;
+    cursor: pointer; }
+    .input-search-group .input-clear-icon.active {
+      display: block; }
+  .input-search-group .input-search-icon {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    cursor: pointer; }
+
 .home .site-header.color-home {
   background: transparent; }
   .home .site-header.color-home .header-generale__branding h1 {
@@ -1732,6 +1750,15 @@ form#author_nonce {
       margin-bottom: 10px; }
 
 .archive-title {
+  font-size: 16px; }
+  .archive-title.active {
+    font-size: 18px;
+    font-weight: 600; }
+  .archive-title sup {
+    font-weight: 100;
+    color: #8c9197; }
+
+h1.archive-title {
   font-size: 20px;
   font-weight: 600; }
 
@@ -1742,6 +1769,72 @@ form#author_nonce {
   align-items: center; }
   .archive-buttons-header__item button.btn-primary-smail {
     padding: 4px 20px; }
+
+.archive-filter {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center; }
+  .archive-filter__item button {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 5px 11px;
+    border: 1px solid #e8e8e8;
+    border-radius: 40px;
+    font-size: 12px;
+    line-height: 20px; }
+    .archive-filter__item button.no-border {
+      border: none; }
+  .archive-filter__item.mla {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: auto; }
+
+.sorting-requests {
+  position: relative; }
+  .sorting-requests__options {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.26rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    width: 180px;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    top: 110%;
+    right: 0;
+    z-index: 9;
+    cursor: default;
+    display: none;
+    visibility: hidden;
+    opacity: 0; }
+    .sorting-requests__options.active {
+      display: flex;
+      visibility: visible;
+      opacity: 1; }
+    .sorting-requests__options__title {
+      display: block;
+      width: 100%;
+      padding: 6px 20px;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      border-bottom: 1px solid #b9b9b9;
+      opacity: 0.6; }
+    .sorting-requests__options__item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 4px 20px;
+      cursor: pointer; }
+      .sorting-requests__options__item:hover {
+        background: #e8e8e8; }
+      .sorting-requests__options__item.active {
+        background: #e8e8e8; }
 
 .archive-posts {
   border: 1px solid #e5e5e5;
@@ -1818,6 +1911,8 @@ form#author_nonce {
 
 .modal.request-add {
   max-width: 900px;
+  top: 0;
+  transform: translate(-50%, 2%);
   text-align: left; }
   @media (max-width: 940px) {
     .modal.request-add {
@@ -1827,6 +1922,37 @@ form#author_nonce {
     margin-top: 0; }
   .modal.request-add form {
     margin: 2rem 0 0; }
+
+.modal.invite-employee {
+  max-width: 600px;
+  top: 20%; }
+  @media (max-width: 940px) {
+    .modal.invite-employee {
+      max-width: 97%; } }
+  .modal.invite-employee h4 {
+    text-align: center;
+    margin-top: 0; }
+  .modal.invite-employee .modal-content.assign-work-journalists button {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    justify-content: center; }
+  .modal.invite-employee form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 2rem 0 0; }
+    @media (max-width: 567px) {
+      .modal.invite-employee form {
+        flex-direction: column; } }
+    .modal.invite-employee form button {
+      padding: 7px 40px;
+      line-height: 24px; }
+      @media (max-width: 567px) {
+        .modal.invite-employee form button {
+          width: 100%;
+          justify-content: center; } }
 
 .single-post {
   margin-top: 16px; }
@@ -1874,6 +2000,11 @@ form#author_nonce {
     width: 250px;
     top: 30px;
     right: 30px; }
+    @media (max-width: 767px) {
+      .single-mass-media__basic-information__buttons {
+        position: static;
+        width: 100%;
+        margin-top: 20px; } }
     .single-mass-media__basic-information__buttons button {
       width: 100%;
       justify-content: center; }
@@ -2435,6 +2566,18 @@ label.btn-primary {
 
 .mb28 {
   margin-bottom: 28px; }
+
+.mb40 {
+  margin-bottom: 40px; }
+
+.mb48 {
+  margin-bottom: 48px; }
+
+.mb60 {
+  margin-bottom: 60px; }
+
+.mb72 {
+  margin-bottom: 72px; }
 
 .txt-al-r {
   text-align: right; }

@@ -15,19 +15,12 @@ function receivingPost(postType, orderbyCust, orderCust, input, itemDiv) {
                     let dataJs = JSON.parse(data);
                     renderFiltrItems(dataJs, itemDiv);
                     filtrItemsSearch(input, dataJs, itemDiv);
-                    // localStorage.setItem('companyItems', JSON.stringify(dataJs));
                 },
                 error: function (jqXHR, text, error) {}
             });
         });
     }
 }
-// const optionsCompany = document.querySelector('.field-select__options.options-company')
-// const companyName = document.querySelector('#company_name')
-// const optionsMedia = document.querySelector('.field-select__options.options-media')
-// const mediaName = document.querySelector('#media_name')
-// receivingPost('company', '', '', companyName, optionsCompany);
-// receivingPost('mass-media', '', '', mediaName, optionsMedia);
 
 const renderItems = () => {
     const registerPage = document.querySelector('#register-page')

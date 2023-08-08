@@ -72,6 +72,12 @@
             top: 30px;
             right: 30px;
 
+            @media (max-width: 767px) {
+                position: static;
+                width: 100%;
+                margin-top: 20px;
+            }
+
             & button {
                 width: 100%;
                 justify-content: center;

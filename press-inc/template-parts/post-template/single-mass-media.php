@@ -44,7 +44,9 @@
                 <span class="subscr unfollow<?php echo $unfollow;?>">Unfollow this media</span>
             </button>
 
-            <button type="button" name="btn-invite-editorial" id="btn-invite-editorial" class="button btn-primary-smail-revers">
+            <button type="button" name="btn-invite-editorial" id="btn-invite-editorial"
+                class="button btn-primary-smail-revers js-open-modal"
+                data-modal="invite-employee" data-overlay="all">
                 <span>Invite editorial staff</span>
             </button>
         </div>

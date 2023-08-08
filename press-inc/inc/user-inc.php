@@ -676,3 +676,183 @@ function press_net_subscribe_user_post_archive_is($post_id, $post_type) {
         return ['btn_class' => '', 'title' => $title_sub];
     }
 }
+
+// User favorites
+add_action('wp_ajax_favorites_user_post', 'press_net_favorites_user_post');
+add_action('wp_ajax_nopriv_favorites_user_post', 'press_net_favorites_user_post');
+function press_net_favorites_user_post() {
+    $error = array();
+    if ( !wp_verify_nonce( $_POST['press-network'], 'press-network' ) ) {
+        $error['empty_nonce'] = 'The request failed.';
+    }
+    if ( !$_POST['current_user'] ) {
+        $error['empty_not_current_user_id'] = 'Not Enough Rights';
+    }
+    if ( !$_POST['post_id'] ) {
+        $error['empty_not_post_id'] = 'Not post id';
+    }
+    // if ( !$_POST['post_type'] ) {
+    //     $error['empty_not_post_type'] = 'Not post type';
+    // }
+    if ( count( $error ) > 0 ) {
+        $error['class'] = 'errors';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    } else {
+        $favorites_post = get_post_meta( $_POST['post_id'], 'favorites_request', true );
+        if ( $favorites_post ) {
+            if (in_array($_POST['current_user'], $favorites_post)) {
+
+                if ( count($favorites_post) > 1 ) {
+                    foreach($favorites_post as $key => $item){
+                        if ($item == $_POST['current_user']){
+                            unset($favorites_post[$key]);
+                        }
+                    }
+                    update_post_meta( $_POST['post_id'], 'favorites_request', $favorites_post );
+                } else {
+                    delete_post_meta( $_POST['post_id'], 'favorites_request' );
+                }
+            } else {
+                array_push($favorites_post, $_POST['current_user']);
+                update_post_meta( $_POST['post_id'], 'favorites_request', $favorites_post );
+            }
+        } else {
+            $favorites_post = array();
+            array_push($favorites_post, $_POST['current_user']);
+            update_post_meta( $_POST['post_id'], 'favorites_request', $favorites_post );
+        }
+        $error['class'] = 'success';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    }
+    wp_die();
+}
+
+function press_net_favorites_user_post_is($post_id) {
+    global $current_user;
+    $favorites_post = get_post_meta( $post_id, 'favorites_request', true );
+    $title_fav = 'To favorites';
+    $title_unfav = 'Remove from favorites';
+    if ( $favorites_post ) {
+        if (in_array($current_user->ID, $favorites_post)) {
+            return ['btn_class' => ' active', 'title' => $title_unfav];
+        } else {
+            return ['btn_class' => '', 'title' => $title_fav];
+        }
+    } else {
+        return ['btn_class' => '', 'title' => $title_fav];
+    }
+}
+
+// User post read
+add_action('wp_ajax_mark_all_read', 'press_net_mark_all_read');
+add_action('wp_ajax_nopriv_mark_all_read', 'press_net_mark_all_read');
+function press_net_mark_all_read() {
+    $error = array();
+    if ( !wp_verify_nonce( $_POST['press-network'], 'press-network' ) ) {
+        $error['empty_nonce'] = 'The request failed.';
+    }
+    if ( !$_POST['current_user'] ) {
+        $error['empty_not_current_user_id'] = 'Not Enough Rights';
+    }
+    if ( !$_POST['mark_all'] ) {
+        if ( !$_POST['post_id'] ) {
+            $error['empty_not_post_id'] = 'Not post id';
+        }
+    }
+
+    if ( count( $error ) > 0 ) {
+        $error['class'] = 'errors';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    } else {
+        if ( $_POST['mark_all'] && $_POST['mark_all'] == 'yes' ) {
+            global $post;
+            $requests = get_posts( array(
+            	'numberposts' => -1,
+            	'post_type'   => REQUESTS,
+            	'suppress_filters' => true,
+            ) );
+            foreach( $requests as $post ){
+            	press_net_mark_all_read_check( $post->ID, $_POST['current_user'], 'all' );
+            }
+            wp_reset_postdata();
+        } else {
+            press_net_mark_all_read_check( $_POST['post_id'], $_POST['current_user'], 'single' );
+        }
+
+        $error['class'] = 'success';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    }
+    wp_die();
+}
+
+function press_net_mark_all_read_check( $post_id, $user_id, $type ) {
+    $read_post = get_post_meta( $post_id, 'read_post', true );
+    if ( $type == 'all' ) {
+        if ( $read_post ) {
+            if (!in_array($user_id, $read_post)) {
+                array_push($read_post, $user_id);
+                update_post_meta( $post_id, 'read_post', $read_post );
+            }
+        } else {
+            $read_post = array();
+            array_push($read_post, $user_id);
+            update_post_meta( $post_id, 'read_post', $read_post );
+        }
+    } elseif ( $type == 'single' ) {
+        if ( $read_post ) {
+            if (in_array($user_id, $read_post)) {
+                if ( count($read_post) > 1 ) {
+                    foreach($read_post as $key => $item){
+                        if ($item == $user_id){
+                            unset($read_post[$key]);
+                        }
+                    }
+                    update_post_meta( $post_id, 'read_post', $read_post );
+                } else {
+                    delete_post_meta( $post_id, 'read_post' );
+                }
+            } else {
+                array_push($read_post, $user_id);
+                update_post_meta( $post_id, 'read_post', $read_post );
+            }
+        } else {
+            $read_post = array();
+            array_push($read_post, $user_id);
+            update_post_meta( $post_id, 'read_post', $read_post );
+        }
+    }
+}
+
+function press_net_mark_read_post_is($post_id) {
+    global $current_user;
+    $read_post = get_post_meta( $post_id, 'read_post', true );
+    $title_read = 'Mark as read';
+    $title_unread = 'Mark as unread';
+    if ( $read_post ) {
+        if (in_array($current_user->ID, $read_post)) {
+            return ['btn_class' => ' active', 'title' => $title_unread];
+        } else {
+            return ['btn_class' => '', 'title' => $title_read];
+        }
+    } else {
+        return ['btn_class' => '', 'title' => $title_read];
+    }
+}
+
+add_action( 'wp_head', 'press_net_requests_visit' );
+function press_net_requests_visit() {
+    if ( is_singular( REQUESTS ) ) {
+        global $user_ID, $post;
+        if ( $user_ID && $user_ID != 0 ) {
+            press_net_mark_all_read_check( $post->ID, $user_ID, 'all' );
+        }
+    }
+}

@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 !function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
 document.addEventListener('DOMContentLoaded', function() {
     var modalButtons = document.querySelectorAll('.js-open-modal'),
-    modal = document.querySelector('.modal'),
+    modal = document.querySelectorAll('.modal'),
     overlay      = document.querySelector('.js-overlay-modal'),
     closeButtons = document.querySelectorAll('.js-modal-close');
     body          = document.querySelector('body'),
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modalElem.classList.add('active');
             overlay.classList.add('active');
             // body.style.overflowY = 'hidden';
-            if ( item.dataset.modal = 'add-request-form' ) {
+            if ( item.dataset.overlay == 'all' ) {
                 overlay.style.zIndex = 99;
             }
         }); // end click
@@ -184,8 +184,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('keyup', function (e) {
         var key = e.keyCode;
         if (key == 27) {
-            if ( modal ) {
-                modal.classList.remove('active');
+            if ( modal.length > 0 ) {
+                if ( document.querySelector('.modal.active') ) {
+                    document.querySelector('.modal.active').classList.remove('active');
+                }
                 overlay.classList.remove('active');
                 overlay.style.zIndex = '';
             }
@@ -194,8 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
     if (overlay) {
         overlay.addEventListener('click', function() {
-            if ( modal ) {
-                modal.classList.remove('active');
+            if ( modal.length > 0 ) {
+                document.querySelector('.modal.active').classList.remove('active');
+                overlay.classList.remove('active');
                 overlay.style.zIndex = '';
             }
             this.classList.remove('active');

@@ -3,6 +3,7 @@ define( 'COMPANY', 'company' );
 define( 'MEDIA', 'mass-media' );
 define( 'COMPANY_CAT', 'company-cat' );
 define( 'MEDIA_CAT', 'mass-media-cat' );
+define( 'REQUESTS', 'requests' );
 require get_template_directory() . '/press-inc/inc/smtp-mailer.php';
 require get_template_directory() . '/press-inc/inc/post-types.php';
 require get_template_directory() . '/press-inc/inc/functions-inc.php';
@@ -16,6 +17,18 @@ remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' ); // remov
 // Adds a main styles and scripts.
 add_action( 'wp_enqueue_scripts', 'press_net_main_scripts_old', 99 );
 function press_net_main_scripts_old() {
+    global $current_user, $authordata;
+    if ( $authordata ) {
+        $author_id = $authordata->ID;
+    } else {
+        $author_id = false;
+    }
+    $bundle_obj = [
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'nonce' => wp_create_nonce('press-network-nonce'),
+        'author_id' => $author_id,
+        'current_user_id' => $current_user->ID
+    ];
     // css
     wp_enqueue_style('main-min', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
@@ -35,6 +48,8 @@ function press_net_main_scripts_old() {
         filemtime( get_stylesheet_directory() . '/js/custom.js' )
     );
 
+    // wp_add_inline_script( 'bundle', 'const press_net_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
+    // wp_add_inline_script( 'custom', 'const post_list_json = ' . wp_json_encode( press_net_post_list_json() ), 'before' );
 }
 
 // Add defer to js
