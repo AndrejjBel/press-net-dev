@@ -410,7 +410,10 @@ const formEditPostRequest = () => {
                         success: function(data) {
                             console.log(data);
                             let data_json = JSON.parse(data);
-                            console.log(data_json.url);
+                            if ( data_json.success == 'Success' ) {
+                                window.location.href = data_json.url;
+                            }
+                            // console.log(data_json.url);
                             // window.location.href = data_json.url;
                         }
                     });
