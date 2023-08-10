@@ -411,7 +411,7 @@ const formEditPostRequest = () => {
                             console.log(data);
                             let data_json = JSON.parse(data);
                             console.log(data_json.url);
-                            window.location.href = data_json.url;
+                            // window.location.href = data_json.url;
                         }
                     });
                 });

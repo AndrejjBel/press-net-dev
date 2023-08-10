@@ -392,17 +392,6 @@ function press_net_request_type($type) {
             'value' => $type,
         ] ],
     ) );
-    // global $post;
-    // if ( count($posts_media) > 0 ) {
-    //     $posts_media_arr = [];
-    //     foreach( $posts_media as $post ){
-    //     	setup_postdata( $post );
-    //     	$posts_media_arr[] = [
-    //             'id' => $post->ID,
-    //             'title' => get_the_title($post->ID)
-    //         ];
-    //     }
-    // }
     wp_reset_postdata();
     return count($posts);
 }

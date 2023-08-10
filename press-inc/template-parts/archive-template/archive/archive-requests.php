@@ -48,13 +48,13 @@ if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
         <button id="categories" type="button" name="button">Categories</button>
         <div class="filtr-options categories">
             <div class="filtr-options__wrap">
-                <?php press_net_request_cat_list();?>
+                <?php press_net_request_cat_list('', '', false);?>
             </div>
             <div class="filtr-options__wrap">
-                <?php press_net_request_cat_list(10, 10);?>
+                <?php press_net_request_cat_list(10, 10, false);?>
             </div>
             <div class="filtr-options__wrap">
-                <?php press_net_request_cat_list(10, 20);?>
+                <?php press_net_request_cat_list(10, 20, false);?>
             </div>
         </div>
     </div>
