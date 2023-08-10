@@ -50,6 +50,7 @@ function press_net_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'press-net' ),
+			'menu-2' => esc_html__( 'Primary not authorized', 'press-net' ),
 			'footer-1' => esc_html__( 'Footer1', 'press-net' ),
 			'footer-2' => esc_html__( 'Footer2', 'press-net' ),
 		)

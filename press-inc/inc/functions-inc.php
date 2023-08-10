@@ -118,6 +118,80 @@ function create_page_on_theme_activation_forgot(){
     }
 }
 
+add_action( 'after_switch_theme', 'create_page_on_theme_activation_edit_post' );
+function create_page_on_theme_activation_edit_post(){
+    $new_page_title     = 'Edit post';
+    $new_page_content   = '';
+    $new_page_template  = 'page-templates/edit-post.php';
+    $page_check = get_page_by_title($new_page_title);
+    $new_page = array(
+            'post_type'     => 'page',
+            'post_title'    => $new_page_title,
+            'post_content'  => $new_page_content,
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_name'     => 'edit-post'
+    );
+    if(!isset($page_check->ID)){
+        $new_page_id = wp_insert_post($new_page);
+        if(!empty($new_page_template)){
+            update_post_meta($new_page_id, '_wp_page_template', $new_page_template);
+        }
+    }
+}
+
+add_action( 'after_switch_theme', 'create_page_on_theme_activation_users' );
+function create_page_on_theme_activation_users(){
+    $new_page_title     = 'Users';
+    $new_page_content   = '';
+    $new_page_template  = 'page-templates/users.php';
+    $page_check = get_page_by_title($new_page_title);
+    $new_page = array(
+            'post_type'     => 'page',
+            'post_title'    => $new_page_title,
+            'post_content'  => $new_page_content,
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_name'     => 'users'
+    );
+    if(!isset($page_check->ID)){
+        $new_page_id = wp_insert_post($new_page);
+        if(!empty($new_page_template)){
+            update_post_meta($new_page_id, '_wp_page_template', $new_page_template);
+        }
+    }
+}
+
+## page tags
+add_filter( 'display_post_states', 'press_net_special_page_mark', 10, 2 );
+function press_net_special_page_mark( $post_states, $post ){
+	if( $post->post_type === 'page' ){
+		if( $post->post_name === 'login' ){
+			$post_states[] = 'Login page';
+		}
+		if( $post->post_name === 'email-verification' ){
+			$post_states[] = 'Email verification page';
+		}
+		if( $post->post_name === 'signup' ){
+			$post_states[] = 'Signup page';
+		}
+		if( $post->post_name === 'forgot' ){
+			$post_states[] = 'Forgot password page';
+		}
+		if( $post->post_name === 'recovery-password' ){
+			$post_states[] = 'Recovery password page';
+		}
+		if( $post->post_name === 'edit-post' ){
+			$post_states[] = 'Edit post page';
+		}
+		if( $post->post_name === 'users' ){
+			$post_states[] = 'Users page';
+		}
+	}
+
+	return $post_states;
+}
+
 /**
  * Declension of nouns after numerals.
  *

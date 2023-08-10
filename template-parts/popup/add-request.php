@@ -38,6 +38,7 @@
                         </div>
                     </div>
                     <span class="field-group__warning-input">Field is required</span>
+                    <span class="field-group__warning-input">Must be selected from the list</span>
                     <input type="hidden" class="input" name="rubric" id="rubric" />
                 </div>
                 <div class="field-group">
@@ -70,6 +71,7 @@
                         </div>
                     </div>
                     <span class="field-group__warning-input">Field is required</span>
+                    <span class="field-group__warning-input">Must be selected from the list</span>
                     <input type="hidden" class="input" name="mass_media_parent_id" id="mass_media_parent_id" />
                 </div>
                 <div class="field-group">

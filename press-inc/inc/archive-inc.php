@@ -328,3 +328,81 @@ function press_net_post_list_json() { // $post_type='mass-media'
     return json_encode(array('media' => $posts_media_fin, 'company' => $posts_company_fin));
     wp_die();
 }
+
+function press_net_request_cat_list($number = 10, $offset = 0, $hide_empty = true) {
+    $slug = REQUESTS_CAT;
+    $order = 'name';
+    $orderby = 'ASC';
+    $icon = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.73483 4.23483C2.88128 4.08839 3.11872 4.08839 3.26517 4.23483L6 6.96967L8.73484 4.23483C8.88128 4.08839 9.11872 4.08839 9.26516 4.23483C9.41161 4.38128 9.41161 4.61872 9.26516 4.76517L6.26517 7.76517C6.11872 7.91161 5.88128 7.91161 5.73483 7.76517L2.73483 4.76517C2.58839 4.61872 2.58839 4.38128 2.73483 4.23483Z" fill="#BFBFBF"></path>
+    </svg>';
+	$args = [
+		'taxonomy'      => [ $slug ],
+		'orderby'       => $orderby,
+		'order'         => $order,
+		'hide_empty'    => $hide_empty,
+        'parent'        => 0,
+        'number'        => $number,
+        'offset'        => $offset,
+	];
+	$terms = get_terms( $args );
+	if( $terms && ! is_wp_error( $terms ) ){
+        $i = 0;
+		foreach( $terms as $term ){
+			if ( $term->parent == 0 ) {
+				$terms_child = get_term_children( $term->term_id, $slug );
+				if ( $terms_child ) {
+                    echo '<div class="filtr-options__parent" data-parent="' . $term->term_id . '">
+                        <input type="checkbox" id="' . $term->name . '" name="' . $term->name . '" value="' . $term->term_id . '">
+                        <label for="' . $term->name . '">' . $term->name . '</label>
+                        <span class="filtr-options__count">(' . $term->count . ')</span>
+                    </div>';
+                    echo '<span class="filtr-options__expand">expand ' . $icon . '</span>';
+                    echo '<div class="filtr-options__children" data-parent="' . $term->term_id . '">';
+					foreach( $terms_child as $term ) {
+                        $term_ch = get_term_by( 'id', $term, $slug );
+						echo '<div class="filtr-options__children__item">
+                            <input type="checkbox" id="' . $term_ch->name . '" name="' . $term_ch->name . '" value="' . $term_ch->term_id . '">
+                            <label for="' . $term_ch->name . '">' . $term_ch->name . '</label>
+                            <span class="filtr-options__count">(' . $term_ch->count . ')</span>
+                        </div>';
+					}
+                    echo '</div>';
+				} else {
+					echo '<div class="filtr-options__parent">
+                        <input type="checkbox" id="' . $term->name . '" name="' . $term->name . '" value="' . $term->term_id . '">
+                        <label for="' . $term->name . '">' . $term->name . '</label>
+                        <span class="filtr-options__count">(' . $term->count . ')</span>
+                    </div>';
+				}
+			}
+            ++$i;
+		}
+        // echo $i;
+	}
+}
+
+function press_net_request_type($type) {
+    $posts = get_posts( array(
+    	'numberposts' => -1,
+    	'post_type'   => 'requests',
+    	'suppress_filters' => true,
+        'meta_query' => [ [
+            'key' => 'request_type',
+            'value' => $type,
+        ] ],
+    ) );
+    // global $post;
+    // if ( count($posts_media) > 0 ) {
+    //     $posts_media_arr = [];
+    //     foreach( $posts_media as $post ){
+    //     	setup_postdata( $post );
+    //     	$posts_media_arr[] = [
+    //             'id' => $post->ID,
+    //             'title' => get_the_title($post->ID)
+    //         ];
+    //     }
+    // }
+    wp_reset_postdata();
+    return count($posts);
+}

@@ -160,31 +160,6 @@ const assignWork = () => {
 }
 assignWork()
 
-const sortActionsBtns = () => {
-    const sortingBtn = document.querySelector('.sorting-requests')
-    if ( sortingBtn ) {
-        sortingBtn.addEventListener('click', function() {
-            sortingBtn.children[1].classList.toggle('active')
-        })
-        document.addEventListener('click', function(e) {
-            const sBtn = e.composedPath().includes(sortingBtn);
-            const sOptions = e.composedPath().includes(sortingBtn.children[1]);
-            if ( !sBtn && !sOptions ) {
-                sortingBtn.children[1].classList.remove('active');
-            }
-        });
-        document.addEventListener('keyup', function (e) {
-            var key = e.keyCode;
-            if (key == 27) {
-                if ( sortingBtn ) {
-                    sortingBtn.children[1].classList.remove('active');
-                }
-            };
-        }, false);
-    }
-}
-sortActionsBtns()
-
 const markAllReadActions = () => {
     const markAllReadBtn = document.querySelector('.mark-all-read')
     const markReadBtns = document.querySelectorAll('.mark-read')

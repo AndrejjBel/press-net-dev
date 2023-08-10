@@ -384,3 +384,42 @@ function inputValidate(form) {
     }
     // console.dir(inputsNoVal);
 }
+
+const formEditPostRequest = () => {
+    const formEditRequest = document.querySelector('form#form-edit-request')
+    if ( formEditRequest ) {
+        const btnEdit = document.querySelector('#btn-edit-post-form')
+        btnEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+            if ( inputValidate(btnEdit.parentElement.parentElement) ) {
+                const formAll = document.querySelector('#form-all')
+                let formNonce = new FormData(formAll);
+                let formData = new FormData(btnEdit.parentElement.parentElement);
+                formData.append('action', 'edit_post_page');
+                for(let [name, value] of formNonce) {
+                    formData.append(name, value);
+                }
+
+                jQuery(document).ready(function($){
+                    $.ajax({
+                        type: 'POST',
+                        url: '/wp-admin/admin-ajax.php',
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        success: function(data) {
+                            console.log(data);
+                            let data_json = JSON.parse(data);
+                            console.log(data_json.url);
+                            window.location.href = data_json.url;
+                        }
+                    });
+                });
+
+            } else {
+                console.dir('Field is required');
+            }
+        })
+    }
+}
+formEditPostRequest()

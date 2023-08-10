@@ -1,4 +1,5 @@
-<?php if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
+<?php $display = 0;
+if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
     <div class="archive-buttons-header mt12">
         <div class="archive-buttons-header__item">
             <button type="button" name="button" class="button btn-primary-smail js-open-modal" data-modal="add-request-form" data-overlay="all">
@@ -33,6 +34,7 @@
 </div>
 
 <div class="archive-filter mt12">
+    <?php if ( $display == 1 ) { ?>
     <div class="archive-filter__item">
         <button type="button" name="button" class="button">
             <span>My Subscriptions</span>
@@ -41,14 +43,31 @@
             </svg>
         </button>
     </div>
+    <?php } ?>
     <div class="archive-filter__item">
-        <button type="button" name="button">Categories</button>
+        <button id="categories" type="button" name="button">Categories</button>
+        <div class="filtr-options categories">
+            <div class="filtr-options__wrap">
+                <?php press_net_request_cat_list();?>
+            </div>
+            <div class="filtr-options__wrap">
+                <?php press_net_request_cat_list(10, 10);?>
+            </div>
+            <div class="filtr-options__wrap">
+                <?php press_net_request_cat_list(10, 20);?>
+            </div>
+        </div>
+    </div>
+    <div class="archive-filter__item with-options">
+        <button id="type" type="button" name="button">Request type</button>
+        <div class="filtr-options type">
+            <button type="button" name="button">Texture <span class="filtr-options__count">(<?php echo press_net_request_type('Texture');?>)</span></button>
+            <button type="button" name="button">Barter <span class="filtr-options__count">(<?php echo press_net_request_type('Barter');?>)</span></button>
+            <button type="button" name="button">Texts <span class="filtr-options__count">(<?php echo press_net_request_type('Texts');?>)</span></button>
+        </div>
     </div>
     <div class="archive-filter__item">
-        <button type="button" name="button">Request type</button>
-    </div>
-    <div class="archive-filter__item">
-        <button type="button" name="button">
+        <button id="featured" type="button" name="button">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="7" cy="7.00003" r="5.5" stroke="#8C8C8C"></circle>
                 <path d="M8.72231 9.91558C8.67205 9.91558 8.62255 9.90274 8.57808 9.87817L6.99996 9.00817L5.42184 9.87817C5.37071 9.90638 5.31308 9.91903 5.25545 9.91468C5.19782 9.91034 5.14251 9.88917 5.09576 9.85357C5.049 9.81798 5.01268 9.76938 4.9909 9.71327C4.96912 9.65716 4.96275 9.59578 4.97251 9.53607L5.27398 7.69334L3.99704 6.38834C3.95568 6.34605 3.92643 6.29247 3.9126 6.23366C3.89877 6.17485 3.90091 6.11316 3.91878 6.05556C3.93665 5.99796 3.96954 5.94675 4.01372 5.90773C4.0579 5.86871 4.11162 5.84343 4.16879 5.83476L5.93317 5.5659L6.72239 3.88931C6.75083 3.83862 6.7914 3.79659 6.84008 3.7674C6.88877 3.7382 6.94389 3.72284 6.99998 3.72284C7.05606 3.72284 7.11118 3.7382 7.15987 3.7674C7.20855 3.79659 7.24913 3.83862 7.27757 3.88931L8.06678 5.5659L9.83116 5.83476C9.88833 5.84343 9.94205 5.86871 9.98623 5.90773C10.0304 5.94675 10.0633 5.99796 10.0812 6.05556C10.099 6.11316 10.1012 6.17485 10.0874 6.23366C10.0735 6.29247 10.0443 6.34605 10.0029 6.38834L8.72597 7.69334L9.02744 9.53607C9.03505 9.58266 9.03286 9.63043 9.02104 9.67604C9.00921 9.72165 8.98803 9.76401 8.95898 9.80015C8.92993 9.83629 8.8937 9.86535 8.85282 9.88529C8.81195 9.90523 8.76742 9.91557 8.72234 9.9156L8.72231 9.91558Z" fill="#8C8C8C"></path>
@@ -58,7 +77,7 @@
     </div>
 
     <div class="archive-filter__item mla">
-        <button type="button" name="button">
+        <button id="favorites" type="button" name="button">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 13.5V5.25H11.25V13.5L8.625 11.2083L6 13.5Z" stroke="#8C8C8C" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
@@ -101,26 +120,6 @@
 else :
     get_template_part( 'press-inc/template-parts/archive-template/post-type/content', 'none' );
 endif;
-
-// $elements = ['7', '11'];
-// $elements_num = [];
-// foreach ($elements as $element) {
-//     $elements_num[] = (int)$element;
-// }
-// function press_net_arr_int($elements) {
-//     foreach ($elements as $element) {
-//         $elements_num[] = (int)$element;
-//     }
-// }
-
-// array_walk($elements , 'press_net_arr_int');
-
-// array_walk($elements, function ($elements, $row) {
-//     foreach ($elements as $row) {
-//         $row = (int)$row;
-//     }
-// });
-// var_dump($elements_num);
 ?>
 
 <form id="author_nonce">

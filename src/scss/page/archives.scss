@@ -36,6 +36,7 @@ h1.archive-title {
 }
 
 .archive-filter {
+    position: relative;
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
@@ -121,6 +122,140 @@ h1.archive-title {
                 background: #e8e8e8;
             }
         }
+    }
+}
+
+.with-options  {
+    position: relative;
+}
+
+.filtr-options {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.26rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175);
+    // flex-direction: column;
+    align-items: flex-start;
+    top: 110%;
+    left: 0;
+    z-index: 9;
+    cursor: default;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+
+    &.active {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &__wrap {
+        width: calc((100% - 40px) / 3);
+    }
+
+    &__parent {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        font-size: 13px;
+        line-height: 16px;
+        cursor: pointer;
+        transition: 0.3s all;
+
+        & input {
+            height: 12px;
+            cursor: pointer;
+        }
+
+        & input[type="checkbox"]:checked+label {
+            font-weight: 600;
+        }
+
+        &:not(:first-child) {
+            margin-top: 12px;
+        }
+
+        &.active {
+            font-weight: 600;
+        }
+    }
+
+    &__count {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 16px;
+        color: #bfbfbf;
+    }
+
+    &__expand {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 12px;
+        line-height: 16px;
+        color: #bfbfbf;
+        margin-left: 18px;
+        // margin-top: 2px;
+        cursor: pointer;
+
+        & svg {
+            transition: 0.3s all;
+
+            &.active {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__children {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        padding-left: 16px;
+        padding-top: 12px;
+        transition: 0.3s all;
+
+        &.active {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &__item {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 13px;
+            line-height: 16px;
+            cursor: pointer;
+
+            & input {
+                height: 12px;
+                cursor: pointer;
+            }
+
+            & input[type="checkbox"]:checked+label {
+                font-weight: 600;
+            }
+        }
+    }
+
+    & label {
+        cursor: pointer;
+    }
+
+    &.categories {
+        gap: 20px;
+        max-width: 700px;
+        width: 100%;
+        padding: 30px;
+    }
+
+    &.type {
+        gap: 10px;
+        padding: 20px;
     }
 }
 

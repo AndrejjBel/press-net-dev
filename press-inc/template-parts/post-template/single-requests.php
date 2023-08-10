@@ -1,4 +1,6 @@
-<?php ['btn_class' => $btn_class, 'title' => $title] = press_net_subscribe_user_post_archive_is($post->ID, 'subscribe_request');?>
+<?php global $user_ID;
+$meta_btn = press_net_subscribe_user_post_archive_is($post->ID, 'subscribe_request');
+?>
 <div class="single-request">
     <div class="single-request__mass-media-information">
         <div class="single-request__mass-media-information__title">
@@ -26,8 +28,8 @@
                 </div>
             </div>
             <div class="single-request__mass-media-information__title__buttons">
-                <button type="button" name="button" title="<?php echo $title; ?>"
-                    class="js-btn-subscribe<?php echo $btn_class; ?>"
+                <button type="button" name="button" title="<?php echo $meta_btn['title']; ?>"
+                    class="js-btn-subscribe<?php echo $meta_btn['btn_class']; ?>"
                     data-post="<?php echo $post->ID;?>" data-post-type="subscribe_request" data-subscr="archive">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM4 4a16 16 0 0 1 16 16M4 11a9 9 0 0 1 9 9"></path>
@@ -62,4 +64,8 @@
     </div>
 </div>
 
-<?php //press_net_requests_visit();?>
+<?php if ( $user_ID == $post->post_author ) { ?>
+    <div class="post-edit mt24">
+        <a href="/edit-post?post=<?php echo $post->ID;?>" class="btn-primary-smail width-fc">Edit request</a>
+    </div>
+<?php } ?>

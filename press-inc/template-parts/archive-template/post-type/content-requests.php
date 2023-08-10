@@ -1,7 +1,7 @@
 <?php
-['btn_class' => $btn_class, 'title' => $title] = press_net_subscribe_user_post_archive_is($post->ID, 'subscribe_request');
-['btn_class' => $fav_btn_class, 'title' => $fav_title] = press_net_favorites_user_post_is($post->ID);
-['btn_class' => $read_btn_class, 'title' => $read_title] = press_net_mark_read_post_is($post->ID);
+$meta_btn_subs = press_net_subscribe_user_post_archive_is($post->ID, 'subscribe_request');
+$meta_btn_fav = press_net_favorites_user_post_is($post->ID);
+$meta_btn_read = press_net_mark_read_post_is($post->ID);
 ?>
 <div class="archive-posts__item">
     <div class="archive-posts__item__logo">
@@ -30,22 +30,22 @@
         </span>
     </div>
     <div class="archive-posts__item__buttons">
-        <button type="button" name="button" title="<?php echo $title; ?>"
-            class="js-btn-subscribe<?php echo $btn_class; ?>"
+        <button type="button" name="button" title="<?php echo $meta_btn_subs['title']; ?>"
+            class="js-btn-subscribe<?php echo $meta_btn_subs['btn_class']; ?>"
             data-post="<?php echo $post->ID;?>" data-post-type="subscribe_request" data-subscr="archive">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM4 4a16 16 0 0 1 16 16M4 11a9 9 0 0 1 9 9"></path>
             </svg>
         </button>
-        <button type="button" name="button" title="<?php echo $fav_title; ?>"
-            class="js-btn-favorites<?php echo $fav_btn_class; ?>"
+        <button type="button" name="button" title="<?php echo $meta_btn_fav['title']; ?>"
+            class="js-btn-favorites<?php echo $meta_btn_fav['btn_class']; ?>"
             data-post="<?php echo $post->ID;?>" data-post-type="favorites_request">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3-5 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         </button>
-        <button type="button" name="button" title="<?php echo $read_title; ?>"
-            class="mark-read<?php echo $read_btn_class; ?>" data-post="<?php echo $post->ID;?>">
+        <button type="button" name="button" title="<?php echo $meta_btn_read['title']; ?>"
+            class="mark-read<?php echo $meta_btn_read['btn_class']; ?>" data-post="<?php echo $post->ID;?>">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="m5 12 5 5L20 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>

@@ -23,12 +23,17 @@
                 </svg>
             </button>
             <?php
+            if ( is_user_logged_in() ) {
+                $menu_name = 'menu-1';
+            } else {
+                $menu_name = 'menu-2';
+            }
             $icon = '<svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                         <path d="M360.5 217.5l-152 143.1C203.9 365.8 197.9 368 192 368s-11.88-2.188-16.5-6.562L23.5 217.5C13.87 208.3 13.47 193.1 22.56 183.5C31.69 173.8 46.94 173.5 56.5 182.6L192 310.9l135.5-128.4c9.562-9.094 24.75-8.75 33.94 .9375C370.5 193.1 370.1 208.3 360.5 217.5z"/>
                     </svg>';
             wp_nav_menu(
                 array(
-                    'theme_location' => 'menu-1',
+                    'theme_location' => $menu_name,
                     'menu_id'        => 'primary-menu',
                     'container_class' => 'primary-nav-menu',
                     'after' => $icon

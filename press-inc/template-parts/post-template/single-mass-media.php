@@ -1,5 +1,5 @@
 <?php global $authordata, $current_user;
-['subscribe' => $subscribe, 'unfollow' => $unfollow] = press_net_subscribe_user_post_single_is($post->ID, 'subscribe_media');
+$meta_btn = press_net_subscribe_user_post_single_is($post->ID, 'subscribe_media');
 ?>
 <div class="single-mass-media">
     <div class="single-mass-media__basic-information block-item">
@@ -40,8 +40,8 @@
                 id="btn-subscribe-media"
                 class="button btn-primary-smail mb10 js-btn-subscribe"
                 data-post="<?php echo $post->ID;?>" data-post-type="subscribe_media" data-subscr="single">
-                <span class="subscr subscribe<?php echo $subscribe;?>">Subscribe to this media</span>
-                <span class="subscr unfollow<?php echo $unfollow;?>">Unfollow this media</span>
+                <span class="subscr subscribe<?php echo $meta_btn['subscribe'];?>">Subscribe to this media</span>
+                <span class="subscr unfollow<?php echo $meta_btn['unfollow'];?>">Unfollow this media</span>
             </button>
 
             <button type="button" name="btn-invite-editorial" id="btn-invite-editorial"

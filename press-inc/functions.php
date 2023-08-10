@@ -4,6 +4,7 @@ define( 'MEDIA', 'mass-media' );
 define( 'COMPANY_CAT', 'company-cat' );
 define( 'MEDIA_CAT', 'mass-media-cat' );
 define( 'REQUESTS', 'requests' );
+define( 'REQUESTS_CAT', 'requests-cat' );
 require get_template_directory() . '/press-inc/inc/smtp-mailer.php';
 require get_template_directory() . '/press-inc/inc/post-types.php';
 require get_template_directory() . '/press-inc/inc/functions-inc.php';
@@ -11,6 +12,7 @@ require get_template_directory() . '/press-inc/inc/auth-reg.php';
 require get_template_directory() . '/press-inc/inc/user-inc.php';
 require get_template_directory() . '/press-inc/inc/add-post.php';
 require get_template_directory() . '/press-inc/inc/archive-inc.php';
+require get_template_directory() . '/press-inc/inc/edit-post-inc.php';
 
 remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' ); // remove extra svg code in wordpress
 
