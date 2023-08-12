@@ -353,7 +353,7 @@ function press_net_request_cat_list($number = 10, $offset = 0, $hide_empty = tru
 				$terms_child = get_term_children( $term->term_id, $slug );
 				if ( $terms_child ) {
                     echo '<div class="filtr-options__parent" data-parent="' . $term->term_id . '">
-                        <input type="checkbox" id="' . $term->name . '" name="' . $term->name . '" value="' . $term->term_id . '">
+                        <input type="checkbox" id="' . $term->name . '" name="' . $term->name . '" value="' . $term->term_id . '" data-child="1">
                         <label for="' . $term->name . '">' . $term->name . '</label>
                         <span class="filtr-options__count">(' . $term->count . ')</span>
                     </div>';

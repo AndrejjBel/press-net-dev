@@ -13,6 +13,7 @@ require get_template_directory() . '/press-inc/inc/user-inc.php';
 require get_template_directory() . '/press-inc/inc/add-post.php';
 require get_template_directory() . '/press-inc/inc/archive-inc.php';
 require get_template_directory() . '/press-inc/inc/edit-post-inc.php';
+require get_template_directory() . '/press-inc/inc/filtr-inc.php';
 
 remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' ); // remove extra svg code in wordpress
 
@@ -50,6 +51,10 @@ function press_net_main_scripts_old() {
         filemtime( get_stylesheet_directory() . '/js/custom.js' )
     );
 
+    wp_enqueue_script('filtr-req', get_stylesheet_directory_uri() . '/js/filtr-req.js',	array('jquery'),
+        filemtime( get_stylesheet_directory() . '/js/filtr-req.js' )
+    );
+
     // wp_add_inline_script( 'bundle', 'const press_net_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
     // wp_add_inline_script( 'custom', 'const post_list_json = ' . wp_json_encode( press_net_post_list_json() ), 'before' );
 }
@@ -60,7 +65,8 @@ function press_net_add_async_attribute( $tag, $handle ) {
 	$handles = array(
         'magnific-popup',
         'bundle',
-        'custom'
+        'custom',
+        'filtr-req'
 	);
 	foreach( $handles as $defer_script) {
 		if ( $defer_script === $handle ) {

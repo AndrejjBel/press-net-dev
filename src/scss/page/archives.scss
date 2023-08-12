@@ -107,6 +107,18 @@ h1.archive-title {
             opacity: 0.6;
         }
 
+        & input {
+            display: none;
+        }
+
+        & input[type="checkbox"]:checked+label {
+            background: #e8e8e8;
+        }
+
+        & input[type="radio"]:checked+label {
+            background: #e8e8e8;
+        }
+
         &__item {
             display: block;
             width: 100%;
@@ -256,6 +268,49 @@ h1.archive-title {
     &.type {
         gap: 10px;
         padding: 20px;
+
+        &__item {
+
+            & label {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                padding: 5px 11px;
+                border: 1px solid #e8e8e8;
+                border-radius: 40px;
+                font-size: 12px;
+                line-height: 20px;
+            }
+
+            & input {
+                display: none;
+            }
+        }
+    }
+}
+
+.type {
+
+    &__item {
+
+        & label {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            padding: 5px 11px;
+            border: 1px solid #e8e8e8;
+            border-radius: 40px;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        & input {
+            display: none;
+        }
+
+        & input[type="checkbox"]:checked+label {
+            border: 1px solid var(--current-menu-item);
+        }
     }
 }
 

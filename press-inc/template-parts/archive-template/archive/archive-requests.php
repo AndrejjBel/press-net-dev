@@ -61,9 +61,18 @@ if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
     <div class="archive-filter__item with-options">
         <button id="type" type="button" name="button">Request type</button>
         <div class="filtr-options type">
-            <button type="button" name="button">Texture <span class="filtr-options__count">(<?php echo press_net_request_type('Texture');?>)</span></button>
-            <button type="button" name="button">Barter <span class="filtr-options__count">(<?php echo press_net_request_type('Barter');?>)</span></button>
-            <button type="button" name="button">Texts <span class="filtr-options__count">(<?php echo press_net_request_type('Texts');?>)</span></button>
+            <div class="type__item">
+                <input id="Texture" type="checkbox" name="Texture" value="Texture" />
+                <label for="Texture">Texture<span class="filtr-options__count">(<?php echo press_net_request_type('Texture');?>)</span></label>
+            </div>
+            <div class="type__item">
+                <input id="Barter" type="checkbox" name="Barter" value="Barter" />
+                <label for="Barter">Barter<span class="filtr-options__count">(<?php echo press_net_request_type('Barter');?>)</span></label>
+            </div>
+            <div class="type__item">
+                <input id="Texts" type="checkbox" name="Texts" value="Texts" />
+                <label for="Texts">Texts<span class="filtr-options__count">(<?php echo press_net_request_type('Texts');?>)</span></label>
+            </div>
         </div>
     </div>
     <div class="archive-filter__item">
@@ -90,9 +99,15 @@ if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
             </svg>
             <div class="sorting-requests__options" title="">
                 <span class="sorting-requests__options__title">Sorting Requests</span>
-                <span data-type="date" class="sorting-requests__options__item active">By posting date</span>
-                <span data-type="deadline" class="sorting-requests__options__item">By deadline</span>
-                <span data-type="taken-work" class="sorting-requests__options__item">Taken to work</span>
+
+                <input id="date" type="radio" name="sort" value="date" checked />
+                <label for="date" class="sorting-requests__options__item">By posting date</label>
+
+                <input id="deadline" type="radio" name="sort" value="deadline" />
+                <label for="deadline" class="sorting-requests__options__item">By deadline</label>
+
+                <input id="taken-work" type="radio" name="sort" value="taken-work" />
+                <label for="taken-work" class="sorting-requests__options__item">Taken to work</label>
             </div>
         </button>
 

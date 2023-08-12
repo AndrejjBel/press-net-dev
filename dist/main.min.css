@@ -1826,6 +1826,12 @@ h1.archive-title {
       font-weight: 600;
       border-bottom: 1px solid #b9b9b9;
       opacity: 0.6; }
+    .sorting-requests__options input {
+      display: none; }
+    .sorting-requests__options input[type="checkbox"]:checked + label {
+      background: #e8e8e8; }
+    .sorting-requests__options input[type="radio"]:checked + label {
+      background: #e8e8e8; }
     .sorting-requests__options__item {
       display: block;
       width: 100%;
@@ -1928,6 +1934,33 @@ h1.archive-title {
   .filtr-options.type {
     gap: 10px;
     padding: 20px; }
+    .filtr-options.type__item label {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 5px 11px;
+      border: 1px solid #e8e8e8;
+      border-radius: 40px;
+      font-size: 12px;
+      line-height: 20px; }
+    .filtr-options.type__item input {
+      display: none; }
+
+.type__item label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 5px 11px;
+  border: 1px solid #e8e8e8;
+  border-radius: 40px;
+  font-size: 12px;
+  line-height: 20px; }
+
+.type__item input {
+  display: none; }
+
+.type__item input[type="checkbox"]:checked + label {
+  border: 1px solid var(--current-menu-item); }
 
 .archive-posts {
   border: 1px solid #e5e5e5;
