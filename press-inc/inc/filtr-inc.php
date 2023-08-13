@@ -102,5 +102,5 @@ function press_net_requests_query($args, $numberposts=-1) {
     $args['numberposts'] = $numberposts;
     $posts = get_posts( $args );
     wp_reset_postdata();
-    return $posts;
+    return $posts; // ceil( count($posts)/10 );
 }

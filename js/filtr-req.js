@@ -222,7 +222,7 @@ function sortInputsCheck(inputs, inputAct) {
 function filtrAjaxRender(data) {
     const archivePosts = document.querySelector('.archive-posts')
     // console.log(JSON.parse(data.posts));
-    // console.log(JSON.parse(data.posts_query));
+    // console.log(JSON.parse(data.posts_query)); Math.ceil(data.posts_query.length/10)
 
     let postsObj = JSON.parse(data.posts);
 

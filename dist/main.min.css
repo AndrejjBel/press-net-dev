@@ -966,6 +966,8 @@ textarea.textarea {
       @media (max-width: 767px) {
         .field-group-two .field-group.one-third {
           width: 100%; } }
+  .field-group-two.opacity {
+    opacity: 0.2; }
 
 .field-group-two-smail {
   display: flex;

@@ -8,6 +8,7 @@ const checkboxLabelCheck = () => {
                     input.previousElementSibling.children[0].children[0].classList.add('active')
                     if ( input.id == 'new_company' || input.id == 'new_media' ) {
                         input.parentElement.parentElement.nextElementSibling.classList.add('active')
+                        input.parentElement.previousElementSibling.style.opacity = 0.2
                         setRequired( input.parentElement.parentElement.nextElementSibling, input.parentElement.previousElementSibling );
                     }
                 } else {
@@ -15,6 +16,7 @@ const checkboxLabelCheck = () => {
                     input.previousElementSibling.children[0].children[0].classList.remove('active')
                     if ( input.id == 'new_company' || input.id == 'new_media' ) {
                         input.parentElement.parentElement.nextElementSibling.classList.remove('active')
+                        input.parentElement.previousElementSibling.style.opacity = ''
                         removeRequired( input.parentElement.parentElement.nextElementSibling, input.parentElement.previousElementSibling );
                     }
                 }

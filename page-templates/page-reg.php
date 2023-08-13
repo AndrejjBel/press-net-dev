@@ -144,7 +144,7 @@ if ( is_user_logged_in() ) { ?>
                     <div class="field-group-two mb20">
                         <div class="field-group">
                             <div class="field-group__title">
-                                <span>Media</span>
+                                <span>Choose existing Media</span>
                                 <span class="field-group__title__required">*</span>
                             </div>
                             <div class="input-group field-select">
@@ -160,7 +160,7 @@ if ( is_user_logged_in() ) { ?>
 
                         <div class="checkbox mb14">
                             <div class="field-group__title mb14">
-                                <span>New media</span>
+                                <span>Creade new Media</span>
                             </div>
                             <label for="new_media" class="checkbox__label">
                                 <span class="checkbox__label__icon">
@@ -168,7 +168,7 @@ if ( is_user_logged_in() ) { ?>
                                         <path d="M20 6L9 17L4 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </span>
-                                <span class="checkbox__label__text">New media</span>
+                                <span class="checkbox__label__text">Creade new Media</span>
                             </label>
                             <input type="checkbox" name="new_media" id="new_media" class="checkbox__input" />
                             <span class="checkbox-privacy-text-warning">Field is required</span>
@@ -248,6 +248,9 @@ if ( is_user_logged_in() ) { ?>
                                         <span>Online media</span>
                                         <span>Radio</span>
                                         <span>TV</span>
+                                        <span>Youtube</span>
+                                        <span>Social Media</span>
+                                        <span>Other</span>
                                     </div>
                                 </div>
                                 <span class="field-group__warning-input">Field is required</span>
