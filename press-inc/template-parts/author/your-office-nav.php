@@ -1,17 +1,17 @@
 <nav id="profile-nav">
     <ul>
         <li>
-            <a href="#" data-tab="profile" class="active">My profile</a>
+            <a href="#" data-tab="profile" class="active">Profile</a>
         </li>
         <li>
-            <a href="#" data-tab="about">About me</a>
+            <a href="#" data-tab="about">Edit profile</a>
         </li>
         <?php if ( is_user_logged_in() && press_net_current_user_type('journalist') ) { ?>
             <li>
-                <a href="#" data-tab="media">My media</a>
+                <a href="#" data-tab="media">Media</a>
             </li>
             <li>
-                <a href="#" data-tab="journalists">My journalists</a>
+                <a href="#" data-tab="journalists">My collegues</a>
             </li>
         <?php } ?>
         <?php if ( is_user_logged_in() && press_net_current_user_type('expert') ) { ?>
@@ -23,7 +23,7 @@
             </li>
         <?php } ?>
         <li>
-            <a href="#" data-tab="portfolio">My portfolio</a>
+            <a href="#" data-tab="portfolio">Portfolio</a>
         </li>
         <li>
             <a href="#" data-tab="referer">Referral program</a>

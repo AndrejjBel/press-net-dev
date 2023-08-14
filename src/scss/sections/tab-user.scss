@@ -155,6 +155,7 @@
                 height: fit-content;
 
                 & form {
+                    display: none;
                     visibility: hidden;
                     opacity: 0;
                     height: 0;
@@ -163,6 +164,7 @@
                     transition: 0.3s all;
 
                     &.active {
+                        display: block;
                         visibility: visible;
                         opacity: 1;
                         height: fit-content;
@@ -224,7 +226,7 @@
             border-radius: 4px;
             z-index: 9;
 
-            &:hover {                
+            &:hover {
                 background: #e8eef6;
             }
         }

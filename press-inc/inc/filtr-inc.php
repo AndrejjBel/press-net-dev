@@ -38,6 +38,14 @@ function press_net_filtr_requests() {
         ];
     }
 
+    if ( !empty($_POST['favorites']) ) {
+        $args['meta_query'][] = [
+            'key' => 'favorites_request',
+            'value' => $_POST['current_user'],
+            'compare' => 'LIKE'
+        ];
+    }
+
     if ( !empty($_POST['sort']) ) {
         if ( $_POST['sort'] == 'deadline' ) {
             $args['meta_key'] = $_POST['sort'];

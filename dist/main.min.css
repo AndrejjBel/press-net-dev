@@ -950,6 +950,39 @@ textarea.textarea {
   flex-wrap: wrap;
   gap: 20px; }
 
+.field-group.image-upload .input-group {
+  display: flex;
+  gap: 20px;
+  align-items: center; }
+
+.field-group.image-upload .logo-wrap {
+  display: flex;
+  border-radius: 50%;
+  border: 1px solid #d9d9d9;
+  overflow: hidden;
+  padding: 2px; }
+
+.field-group.image-upload img {
+  width: 120px;
+  border-radius: 50%; }
+
+.field-group.image-upload input {
+  display: none; }
+
+.field-group.image-upload .logo-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start; }
+  .field-group.image-upload .logo-btn label {
+    font-weight: 600;
+    cursor: pointer; }
+  .field-group.image-upload .logo-btn button.btn-logo-delete {
+    padding: 0;
+    color: var(--orange-color); }
+    .field-group.image-upload .logo-btn button.btn-logo-delete.btn-hidden {
+      display: none; }
+
 .field-group-two {
   display: flex;
   flex-wrap: wrap;
@@ -1789,6 +1822,10 @@ h1.archive-title {
     line-height: 20px; }
     .archive-filter__item button.no-border {
       border: none; }
+    .archive-filter__item button#favorites.active {
+      border: 1px solid var(--current-menu-item); }
+      .archive-filter__item button#favorites.active svg path {
+        stroke: var(--current-menu-item); }
   .archive-filter__item.mla {
     display: flex;
     gap: 8px;
@@ -1979,7 +2016,12 @@ h1.archive-title {
     .archive-posts__item__logo {
       flex: none;
       width: 32px;
-      height: 32px; }
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 1px; }
+      .archive-posts__item__logo img {
+        border-radius: 50%; }
     .archive-posts__item__title {
       flex: 1;
       font-weight: 600; }
@@ -2890,6 +2932,7 @@ label.btn-primary {
     height: -moz-fit-content;
     height: fit-content; }
     .content-tab-user__form-add__form.post-list-item form {
+      display: none;
       visibility: hidden;
       opacity: 0;
       height: 0;
@@ -2897,6 +2940,7 @@ label.btn-primary {
       padding: 0;
       transition: 0.3s all; }
       .content-tab-user__form-add__form.post-list-item form.active {
+        display: block;
         visibility: visible;
         opacity: 1;
         height: -moz-fit-content;

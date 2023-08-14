@@ -89,6 +89,17 @@ function press_net_post_add() {
                     wp_set_object_terms( $post_id, $rubrics_num, 'requests-cat' );
                 }
             }
+            if ( !empty( $_FILES['my_image_upload']['tmp_name'] ) and $_FILES['my_image_upload']['error'] == 0 ) {
+                $attachment_id = media_handle_upload( 'my_image_upload', 0 );
+
+            	if ( is_wp_error( $attachment_id ) ) {
+            		echo "Media upload error.";
+                    $error['upload_error'] = 'Media upload error';
+            	} else {
+                    set_post_thumbnail( $post_id, $attachment_id );
+            		echo "The media file has been successfully uploaded!";
+            	}
+            }
             $error['success'] = 'Success';
             $error['POST'] = $_POST;
             // $error['content'] = $content;
@@ -145,6 +156,24 @@ function press_net_post_edit() {
         if ( $_POST['subject'] ) {
             wp_set_object_terms( $_POST['post_id'], $_POST['subject'], MEDIA_CAT );
             // wp_set_post_terms( $_POST['post_id'], $_POST['subject'], MEDIA_CAT, true );
+        }
+
+        if ( !empty( $_FILES['my_image_upload']['tmp_name'] ) and $_FILES['my_image_upload']['error'] == 0 ) {
+            $attachment_id = media_handle_upload( 'my_image_upload', 0 );
+
+        	if ( is_wp_error( $attachment_id ) ) {
+        		echo "Media upload error.";
+                $error['upload_error'] = 'Media upload error';
+        	} else {
+                set_post_thumbnail( $_POST['post_id'], $attachment_id );
+        		echo "The media file has been successfully uploaded!";
+        	}
+        }
+
+        if ( $_POST['logo-delete'] == 'yes' ) {
+            $thumb_id = get_post_thumbnail_id( $_POST['post_id'] );
+            delete_post_thumbnail( $_POST['post_id'] );
+            wp_delete_attachment( $thumb_id, true );
         }
 
         $error['success'] = 'Success';

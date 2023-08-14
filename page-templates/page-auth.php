@@ -31,7 +31,7 @@ if ( is_user_logged_in() ) { ?>
 
             <!-- Form -->
             <form name="loginform" id="loginform" action="/wp-login.php" method="post" class=" mb28">
-                <h3>Login</h3>
+                <h3>Sign In</h3>
                 <div class="input-group mb14">
                     <input type="text" class="input" name="log" id="user_login" placeholder="Login or Email" required autocomplete="off"/>
                 </div>
@@ -69,7 +69,7 @@ if ( is_user_logged_in() ) { ?>
 
                 <div class="link-group">
                     <a href="/forgot" class="forgot-password">Forgot your password?</a>
-                    <a href="/signup" class="register">Register</a>
+                    <a href="/signup" class="register">Sign Up</a>
                 </div>
             </form>
 

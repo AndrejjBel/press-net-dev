@@ -21,9 +21,9 @@ if ( is_user_logged_in() ) { ?>
         <div class="login-register-page__content">
 
             <!-- Form -->
-            <form method="post" id="register-account-form">
+            <form method="post" id="register-account-form"  class="mb20">
                 <h3>Let's create your account</h3>
-                <p class="mb20">Do you already have an account? <a href="/login">Login</a></p>
+                <p class="mb20">Do you already have an account? <a href="/login">Sign In</a></p>
 
                 <div class="input-group-two mb20">
                     <button type="button" class="toggle-button active" id="expert">
@@ -160,7 +160,7 @@ if ( is_user_logged_in() ) { ?>
 
                         <div class="checkbox mb14">
                             <div class="field-group__title mb14">
-                                <span>Creade new Media</span>
+                                <span>Create new Media</span>
                             </div>
                             <label for="new_media" class="checkbox__label">
                                 <span class="checkbox__label__icon">
@@ -168,7 +168,7 @@ if ( is_user_logged_in() ) { ?>
                                         <path d="M20 6L9 17L4 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </span>
-                                <span class="checkbox__label__text">Creade new Media</span>
+                                <span class="checkbox__label__text">Create new Media</span>
                             </label>
                             <input type="checkbox" name="new_media" id="new_media" class="checkbox__input" />
                             <span class="checkbox-privacy-text-warning">Field is required</span>
@@ -342,17 +342,27 @@ if ( is_user_logged_in() ) { ?>
 
                 <?php wp_nonce_field('exchange_register','exchange_register'); ?>
 
+                <div class="reg-end">
+                    <div class="welcome-text">
+                        <h3>Registration completed successfully.</h3>
+                        <p>To complete the registration, you must confirm your E-mail (Check your spam folder).</p>
+                        <p>An email with instructions has been sent to the email address you provided during registration.</p>
+                    </div>
+                    <!-- <a href="/" class="home">Home</a> -->
+                </div>
+                <div class="notif-custom-reg"></div>
+
             </form>
 
-            <div class="reg-end">
+            <!-- <div class="reg-end">
                 <div class="welcome-text">
                     <h3>Registration completed successfully.</h3>
                     <p>To complete the registration, you must confirm your E-mail (Check your spam folder).</p>
                     <p>An email with instructions has been sent to the email address you provided during registration.</p>
                 </div>
-                <!-- <a href="/" class="home">Home</a> -->
+                <a href="/" class="home">Home</a>
             </div>
-            <div class="notif-custom-reg"></div>
+            <div class="notif-custom-reg"></div> -->
 
             <a href="/" class="home">Home</a>
         </div>

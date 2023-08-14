@@ -395,3 +395,13 @@ function press_net_request_type($type) {
     wp_reset_postdata();
     return count($posts);
 }
+
+function press_net_has_post_thumbnail($post_id) {
+    if( has_post_thumbnail($post_id) ) {
+        $logo = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
+        return ['thumb_url' => $logo, 'logo_delete' => ''];
+    } else {
+        $logo = get_template_directory_uri() . '/img/icons/media-logo-no.svg';
+        return ['thumb_url' => $logo, 'logo_delete' => ' btn-hidden'];
+    }
+}

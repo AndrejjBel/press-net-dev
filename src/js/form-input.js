@@ -208,3 +208,33 @@ function removeRequiredType( inputsDiv, inputsDivName ) {
         input.removeAttribute('required');
     });
 }
+
+function mediaLogoDownload() { // imgResult, inputUpload
+    const mediaLogoInputs = document.querySelectorAll('input[name="my_image_upload"]')
+    mediaLogoInputs.forEach((input) => {
+        let reader = input.previousElementSibling.dataset.read
+        reader = new FileReader();
+        reader.onload = function(e) {
+            input.previousElementSibling.src = e.target.result;
+        };
+        input.addEventListener('change', loadImageFile);
+        function loadImageFile() {
+            var file = input.files[0];
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // const logoResult = document.querySelector(imgResult)
+    // const inputMediaLogo = document.querySelector(inputUpload)
+    // let reader = logoResult.dataset.read
+    // reader = new FileReader();
+    // reader.onload = function(e) {
+    //     logoResult.src = e.target.result;
+    // };
+    // inputMediaLogo.addEventListener('change', loadImageFile);
+    // function loadImageFile() {
+    //     var file = inputMediaLogo.files[0];
+    //     reader.readAsDataURL(file);
+    // }
+}
+mediaLogoDownload();

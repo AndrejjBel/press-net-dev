@@ -20,7 +20,7 @@
             </button>
         </div>
     </div>
-    <form id="add-post-form">
+    <form id="add-post-form" enctype="multipart/form-data">
         <div class="field-group-two mb24">
             <div class="field-group">
                 <div class="field-group__title">
@@ -97,6 +97,28 @@
                     </div>
                 </div>
                 <span class="field-group__warning-input">Field is required</span>
+            </div>
+        </div>
+
+        <div class="field-group mb28">
+            <div class="field-group image-upload">
+                <div class="field-group__title">
+                    <span>Logo</span>
+                </div>
+                <div class="input-group media-logo">
+                    <div class="logo-wrap">
+                        <img id="logo-result" src="<?php echo press_net_has_post_thumbnail($post->ID)['thumb_url']; ?>" data-read="FReadLogo<?php echo $post->ID;?>" alt="">
+                        <input type="file" name="my_image_upload" id="media_logo<?php echo $post->ID;?>"  multiple="false"
+                            accept="image/jpeg, image/png, image/pjpeg, image/webp" />
+                    </div>
+                    <div class="logo-btn">
+                        <label for="media_logo<?php echo $post->ID;?>">Upload media logo</label>
+                        <button type="button" name="button-image-upload" id="button-logo-delete"
+                            data-post="<?php echo $post->ID;?>"
+                            class="button btn-logo-delete<?php echo press_net_has_post_thumbnail($post->ID)['logo_delete']; ?>">Delete logo</button>
+                        <input type="hidden" name="logo-delete" value="no">
+                    </div>
+                </div>
             </div>
         </div>
 

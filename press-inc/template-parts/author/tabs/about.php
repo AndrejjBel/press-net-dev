@@ -61,20 +61,20 @@
 
         <div class="field-group mb24">
             <div class="field-group__title">
-                <span>Text about me</span>
+                <span>About me</span>
             </div>
             <div class="input-group user-description">
                 <textarea type="textarea" rows="4" class="textarea" name="description" id="description" placeholder="Text about me"><?php echo press_net_get_authordata('description'); ?></textarea>
             </div>
         </div>
 
-        <div class="field-group mb24">
+        <!-- <div class="field-group mb24">
             <div class="field-group__title">
                 <span>My themes</span>
             </div>
             <div class="input-group user-themes">
                 <div class="user-themes__items">
-                    <?php press_net_get_user_themes(); ?>
+                    <?php //press_net_get_user_themes(); ?>
                 </div>
                 <div class="user-themes__items__input">
                     <input class="input" type="text" name="themes" id="themes" value="">
@@ -88,7 +88,7 @@
                 <input type="hidden" name="user_themes" id="user_themes" value="<?php echo $user_themes; ?>" />
                 <input type="hidden" name="user_themes_edit" id="user_themes_edit" value="" />
             </div>
-        </div>
+        </div> -->
 
         <button class="button btn-primary mb28" type="submit" name="author-lk-submit" id="author-lk-submit">Save</button>
 
@@ -104,7 +104,8 @@
         <div class="avatar-upload__img-prev">
             <?php echo press_net_get_avatar_user_img(); ?>
         </div>
-        <input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
+        <input type="file" name="my_image_upload" id="my_image_upload"  multiple="false"
+            accept="image/jpeg, image/png, image/pjpeg, image/webp" />
         <input type="hidden" name="author_archive_id" id="author_archive_id" value="<?php echo $author_id; ?>" />
         <input type="hidden" name="current_user_id" id="current_user_id" value="<?php echo $user_ID; ?>" />
         <?php wp_nonce_field( 'my_image_upload', 'my_image_upload_nonce' ); ?>

@@ -51,7 +51,7 @@
                             <div class="header-generale__info__avatar__nav__content__title">
                                 <?php echo press_net_get_userdata('display_name'); ?>
                             </div>
-                            <div class="header-generale__info__avatar__nav__content__account">Basic account</div>
+                            <!-- <div class="header-generale__info__avatar__nav__content__account">Basic account</div> -->
                             <div class="header-generale__info__avatar__nav__content__nav">
                                 <ul>
                                     <li><a href="<?php echo press_net_get_user_link_lk(''); ?>" data-tab="profile">Profile and settings</a></li>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
             <?php } else { ?>
-                <a href="/signup" class="header-generale__info__link btn-primary btn-nav reg-link">Registration</a>
-                <a href="/login" class="header-generale__info__link btn-primary btn-nav">Login</a>
+                <a href="/signup" class="header-generale__info__link btn-primary btn-nav reg-link">Sign Up</a>
+                <a href="/login" class="header-generale__info__link btn-primary btn-nav">Sign In</a>
             <?php } ?>
         </div><!-- .header-generale__info -->
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">

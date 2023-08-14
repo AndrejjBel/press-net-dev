@@ -177,7 +177,10 @@ const rememberPassUser = () => {
 
         btnGeneratePassword.addEventListener('click', (e) => {
             e.preventDefault();
-            genpass(12, 3, '#new_user_pass', '#new_user_pass_repeat')
+            // genpass(12, 3, '#new_user_pass', '#new_user_pass_repeat')
+            let newPasswordVal = genPassword.get( 12, 1, 1, 1);
+            newUserPass.value = newPasswordVal
+            newUserPassRepeat.value = newPasswordVal
             rememberPasswordSubmit.disabled = false
             rememberPasswordSubmit.classList.add("button-sliding-icon")
             rememberPasswordSubmit.style.opacity = 1
@@ -420,8 +423,8 @@ function formValidate(formInputs, emailInput, passInput) {
 }
 
 function getParameter(key) {
-    address = window.location.search
-    parameterList = new URLSearchParams(address)
+    let address = window.location.search
+    let parameterList = new URLSearchParams(address)
     return parameterList.get(key)
 }
 

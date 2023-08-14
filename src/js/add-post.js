@@ -145,7 +145,7 @@ const formEditPost = () => {
                                         btn.parentElement.parentElement.nextElementSibling.classList.remove('active')
                                     }, 3000);
                                     // let data_fin = JSON.parse(data)
-                                    // console.dir(data);
+                                    console.dir(data);
                                 },
                                 error: () => {
                                     console.log('Ошибка отправки.');
@@ -340,7 +340,7 @@ function btnCancelEditPost(divButtons) {
             btnCancelEditPost.forEach((btn) => {
                 btn.addEventListener('click', (e) => {
                     btn.form.querySelectorAll('input').forEach((input) => {
-                        if ( input.id !== 'post_type' ) {
+                        if ( input.id !== 'post_type' && input.name !== 'my_image_upload' ) {
                             input.value = input.attributes.value.value
                         }
                     });
@@ -350,7 +350,7 @@ function btnCancelEditPost(divButtons) {
                     }
                     setTimeout( () => {
                         btn.form.classList.remove('active')
-                    }, 1200);
+                    }, 400);
                 })
             });
         }
@@ -426,3 +426,17 @@ const formEditPostRequest = () => {
     }
 }
 formEditPostRequest()
+
+const formDeleteLogo = () => {
+    const logoDeleteBtns = document.querySelectorAll('form #button-logo-delete')
+    if ( logoDeleteBtns.length > 0 ) {
+        logoDeleteBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                btn.parentElement.previousElementSibling.children[0].src = '/wp-content/themes/press-net/img/icons/media-logo-no.svg';
+                btn.nextElementSibling.value = 'yes'
+                btn.remove();
+            })
+        });
+    }
+}
+formDeleteLogo()

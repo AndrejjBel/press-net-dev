@@ -38,7 +38,7 @@ get_header();
                 <?php wp_nonce_field('exchange_forgot_password','exchange_forgot_password'); ?>
                 <button class="button btn-primary auth-submit mb28" type="submit" form="loginform" name="forgot-password" id="forgot-password" disabled>Send</button>
                 <div class="link-group-centered">
-                    <a href="/login" class="forgot-password">Login</a>
+                    <a href="/login" class="forgot-password">Sign In</a>
                 </div>
             </form>
 

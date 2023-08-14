@@ -24,17 +24,6 @@ const userAvatar = () => {
                 });
             })
         })
-        FReader = new FileReader();
-        FReader.onload = function(e) {
-            document.querySelector('#result').src = e.target.result;
-        };
-        document.querySelector('#my_image_upload').addEventListener('change', loadImageFile);
-        function loadImageFile() {
-            var file = document.querySelector('#my_image_upload').files[0];
-            FReader.readAsDataURL(file);
-            // document.querySelector('.avatar-upload__img-prev svg').style.display = 'none'
-            // document.querySelector('#result').style.display = 'block'
-        }
     }
 }
 userAvatar()
@@ -334,7 +323,7 @@ function userProfileLincs(links, linkActyve, tab) {
             });
         }
         document.querySelector('a[data-tab="'+tab+'"]').classList.add('active')
-        console.log(document.querySelector('#profile-nav a[data-tab="'+tab+'"]'));
+        // console.log(document.querySelector('#profile-nav a[data-tab="'+tab+'"]'));
     } else {
         if (links) {
             links.forEach((link) => {

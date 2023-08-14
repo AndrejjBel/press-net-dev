@@ -67,6 +67,15 @@ function press_net_user_type() {
 add_action('wp_ajax_press_net_avatar_upload', 'press_net_avatar_upload');
 add_action('wp_ajax_nopriv_press_net_avatar_upload', 'press_net_avatar_upload');
 function press_net_avatar_upload() {
+    // filter of allowed file types - allow only images, except GIFs
+	// add_filter( 'upload_mimes', function( $mimes ){
+	// 	return [
+	// 		'jpg|jpeg|jpe' => 'image/jpeg',
+	// 		'png'          => 'image/png',
+    //         'webp'          => 'image/webp',
+	// 	];
+	// } );
+
     if (
     	isset( $_POST['my_image_upload_nonce'] )
     	&& wp_verify_nonce( $_POST['my_image_upload_nonce'], 'my_image_upload' )
@@ -192,7 +201,7 @@ function press_net_get_avatar_user_img(){
     $url = get_avatar_url( $user_id, array(
     	'size' => 150
     ) );
-    return '<img id="result" src="' . $url . '" alt="">';
+    return '<img id="result" src="' . $url . '" data-read="FReadAva'. $user_id . '" alt="">';
 }
 
 function press_net_get_is_avatar_user(){

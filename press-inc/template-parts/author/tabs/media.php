@@ -110,6 +110,20 @@
                     </div>
                 </div>
 
+                <div class="field-group mb28">
+                    <div class="field-group image-upload">
+                        <div class="field-group__title">
+                            <span>Logo</span>
+                        </div>
+                        <div class="input-group media-logo">
+                            <img id="logo-result" src="<?php echo get_template_directory_uri(); ?>/img/icons/media-logo-no.svg" data-read="FReadLogo" alt="">
+                            <input type="file" name="my_image_upload" id="media_logo"  multiple="false"
+                                accept="image/jpeg, image/png, image/pjpeg, image/webp" />
+                            <label for="media_logo">Upload media logo</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="buttons-group-post add-post">
                     <button type="button" name="btn-cancel-post-form" id="btn-cancel-post-form" class="button cancel-post-form" data-title="New mass media">Cancel</button>
                     <button type="button" name="btn-save-post-form" id="btn-save-post-form" class="button save-post-form">Save</button>

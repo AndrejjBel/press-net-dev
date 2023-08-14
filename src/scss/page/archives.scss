@@ -57,6 +57,17 @@ h1.archive-title {
             &.no-border {
                 border: none;
             }
+
+            &#favorites {
+
+                &.active {
+                    border: 1px solid var(--current-menu-item);
+
+                    & svg path {
+                        stroke: var(--current-menu-item);
+                    }
+                }
+            }
         }
 
         &.mla {
@@ -334,6 +345,13 @@ h1.archive-title {
             flex: none;
             width: 32px;
             height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            padding: 1px;
+
+            & img {
+                border-radius: 50%;
+            }
         }
 
         &__title {
