@@ -228,3 +228,5 @@ function markReadAjax( formData, btn, btns ) {
         });
     });
 }
+
+export {subscribePost, favoritesPost, markAllReadActions};

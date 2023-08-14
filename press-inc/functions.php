@@ -51,9 +51,9 @@ function press_net_main_scripts_old() {
         filemtime( get_stylesheet_directory() . '/js/custom.js' )
     );
 
-    wp_enqueue_script('filtr-req', get_stylesheet_directory_uri() . '/js/filtr-req.js',	array('jquery'),
-        filemtime( get_stylesheet_directory() . '/js/filtr-req.js' )
-    );
+    // wp_enqueue_script('filtr-req', get_stylesheet_directory_uri() . '/js/filtr-req.js',	array('jquery'),
+    //     filemtime( get_stylesheet_directory() . '/js/filtr-req.js' )
+    // );
 
     // wp_add_inline_script( 'bundle', 'const press_net_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
     // wp_add_inline_script( 'custom', 'const post_list_json = ' . wp_json_encode( press_net_post_list_json() ), 'before' );
