@@ -9,31 +9,77 @@ const filtr = () => {
         const formAll = document.querySelector('#form-all')
         let taxs = null;
         let types = null;
-        optionsTypeInputs.forEach((input) => {
-            input.addEventListener('click', function() {
+        if ( optionsTypeInputs.length > 0 ) {
+            optionsTypeInputs.forEach((input) => {
+                input.addEventListener('click', function() {
+                    let taxs = [];
+                    let types = [];
+                    let formData = new FormData(formAll);
+                    formData.append('action', 'filtr_requests');
+                    catInputsCheckType(types);
+                    formData.append('request_type', types.join(','));
+                    catInputsCheck(taxs);
+                    if ( taxs ) {
+                        formData.append('categories', taxs.join(','));
+                    }
+                    filtrAjaxData(formData);
+                })
+            });
+        }
+        if ( optionsCatInputs.length > 0 ) {
+            optionsCatInputs.forEach((input) => {
+                input.addEventListener('change', function() {
+                    let taxs = [];
+                    let types = [];
+                    let formData = new FormData(formAll);
+                    formData.append('action', 'filtr_requests');
+                    if ( input.dataset.child == 1 ) {
+                        formData.append('tax_parent', 1);
+                    }
+                    filtrOptionsCheckHand(input);
+                    catInputsCheck(taxs);
+                    if ( taxs ) {
+                        formData.append('categories', taxs.join(','));
+                    }
+                    catInputsCheckType(types);
+                    if ( types ) {
+                        formData.append('request_type', types.join(','));
+                    }
+                    filtrAjaxData(formData);
+                })
+            });
+        }
+        if ( optionsSortInputs.length > 0 ) {
+            optionsSortInputs.forEach((input) => {
+                input.addEventListener('change', function() {
+                    sortInputsCheck(optionsSortInputs, this);
+                    let taxs = [];
+                    let types = [];
+                    let formData = new FormData(formAll);
+                    formData.append('action', 'filtr_requests');
+                    formData.append('sort', input.value);
+                    catInputsCheck(taxs);
+                    if ( taxs ) {
+                        formData.append('categories', taxs.join(','));
+                    }
+                    catInputsCheckType(types);
+                    if ( types ) {
+                        formData.append('request_type', types.join(','));
+                    }
+                    filtrAjaxData(formData);
+                })
+            });
+        }
+        if ( buttonFavorites ) {
+            buttonFavorites.addEventListener('click', function() {
+                buttonFavorites.classList.toggle('active')
                 let taxs = [];
                 let types = [];
                 let formData = new FormData(formAll);
                 formData.append('action', 'filtr_requests');
-                catInputsCheckType(types);
-                formData.append('request_type', types.join(','));
-                catInputsCheck(taxs);
-                if ( taxs ) {
-                    formData.append('categories', taxs.join(','));
+                if ( buttonFavorites.classList.contains('active') ) {
+                    formData.append('favorites', 1);
                 }
-                filtrAjaxData(formData);
-            })
-        });
-        optionsCatInputs.forEach((input) => {
-            input.addEventListener('change', function() {
-                let taxs = [];
-                let types = [];
-                let formData = new FormData(formAll);
-                formData.append('action', 'filtr_requests');
-                if ( input.dataset.child == 1 ) {
-                    formData.append('tax_parent', 1);
-                }
-                filtrOptionsCheckHand(input);
                 catInputsCheck(taxs);
                 if ( taxs ) {
                     formData.append('categories', taxs.join(','));
@@ -43,46 +89,8 @@ const filtr = () => {
                     formData.append('request_type', types.join(','));
                 }
                 filtrAjaxData(formData);
-            })
-        });
-        optionsSortInputs.forEach((input) => {
-            input.addEventListener('change', function() {
-                sortInputsCheck(optionsSortInputs, this);
-                let taxs = [];
-                let types = [];
-                let formData = new FormData(formAll);
-                formData.append('action', 'filtr_requests');
-                formData.append('sort', input.value);
-                catInputsCheck(taxs);
-                if ( taxs ) {
-                    formData.append('categories', taxs.join(','));
-                }
-                catInputsCheckType(types);
-                if ( types ) {
-                    formData.append('request_type', types.join(','));
-                }
-                filtrAjaxData(formData);
-            })
-        });
-        buttonFavorites.addEventListener('click', function() {
-            buttonFavorites.classList.toggle('active')
-            let taxs = [];
-            let types = [];
-            let formData = new FormData(formAll);
-            formData.append('action', 'filtr_requests');
-            if ( buttonFavorites.classList.contains('active') ) {
-                formData.append('favorites', 1);
-            }
-            catInputsCheck(taxs);
-            if ( taxs ) {
-                formData.append('categories', taxs.join(','));
-            }
-            catInputsCheckType(types);
-            if ( types ) {
-                formData.append('request_type', types.join(','));
-            }
-            filtrAjaxData(formData);
-        });
+            });
+        }
     }
 }
 filtr()
