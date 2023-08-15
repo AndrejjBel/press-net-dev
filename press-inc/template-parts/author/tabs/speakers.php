@@ -130,8 +130,9 @@
                                         <span>City</span>
                                         <!-- <span class="field-group__title__required">*</span> -->
                                     </div>
-                                    <div class="input-group">
-                                        <input type="text" class="input" name="company_city" id="company_city" placeholder="City" value="" />
+                                    <div class="input-group">                                        
+                                        <input type="text" class="input suggest" name="company_city" id="company_city" placeholder="City" value="" />
+                                        <input type="hidden" name="city_obj" id="city_obj" value="">
                                     </div>
                                     <!-- <span class="field-group__warning-input">Field is required</span> -->
                                 </div>

@@ -71,7 +71,8 @@
                             <span class="field-group__title__required">*</span>
                         </div>
                         <div class="input-group">
-                            <input type="text" class="input" name="city" id="city" placeholder="City" required value="" />
+                            <input type="text" class="input suggest" name="city" id="city" placeholder="City" required value="" />
+                            <input type="hidden" name="city_obj" id="city_obj" value="">
                         </div>
                         <span class="field-group__warning-input">Field is required</span>
                     </div>

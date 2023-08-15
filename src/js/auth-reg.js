@@ -315,6 +315,7 @@ const regUser = () => {
         registerAccountSubmit.addEventListener('click', (e) => {
             e.preventDefault();
             const formInputs = document.querySelectorAll('form#register-account-form input[required]')
+            const formInputsAll = document.querySelectorAll('form#register-account-form input')
             const emailAddresVal = document.querySelector('#email_register')
             const passwordVal = document.querySelector('#password_register')
 
@@ -358,7 +359,9 @@ const regUser = () => {
                                 }, 10000);
                             } else {
                                 welcomeText.classList.add("active")
-                                form.style.display = 'none'
+                                form.reset();
+                                formCheckboxFalse(form);
+                                // form.style.display = 'none'
                             }
                         },
                         error: () => {
@@ -420,6 +423,25 @@ function formValidate(formInputs, emailInput, passInput) {
     } else {
         return false;
     }
+}
+
+function formCheckboxFalse(form) {
+    let formInputs =  form.querySelectorAll('input[type="checkbox"]')
+    let formActive =  form.querySelectorAll('.checkbox .active')
+    formInputs.forEach((input) => {
+        input.checked = false
+    });
+    formActive.forEach((item) => {
+        item.classList.remove("active")
+    });
+    form.querySelector('.new-company-form').classList.remove("active")
+    form.querySelector('.new-media-form').classList.remove("active")
+    form.querySelectorAll('.field-group').forEach((item) => {
+        item.style.opacity = ''
+        if ( item.children[1].children[0] ) {
+            item.children[1].children[0].style.pointerEvents = ''
+        }
+    });
 }
 
 function getParameter(key) {

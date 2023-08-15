@@ -21,7 +21,7 @@ $meta_btn_read = press_net_mark_read_post_is($post->ID);
         </span>
         <div class="requests-media-meta">
             <?php press_net_media_parent_meta($post->mass_media_parent_id); ?>
-            <span class="requests-media-meta__date"><?php the_date('d.m.Y H:i'); ?></span>
+            <span class="requests-media-meta__date"><?php echo get_the_date('d.m.Y H:i', $post->ID); ?></span>
         </div>
     </div>
     <div class="archive-posts__item__meta requests">

@@ -139,6 +139,7 @@ function press_net_post_edit() {
         echo $error_fin;
         wp_die();
     } else {
+        $city_obj = json_decode(stripslashes($_POST['city_obj']));
         $my_post = [
             'ID' => $_POST['post_id'],
             'post_title' => $_POST['post_title'],
@@ -146,6 +147,7 @@ function press_net_post_edit() {
                 'job_title' => $_POST['job_title'],
                 'website' => $_POST['website'],
                 'city' => $_POST['city'],
+                'city_obj' => $city_obj,
             ],
         ];
         // Обновляем
@@ -177,6 +179,8 @@ function press_net_post_edit() {
         }
 
         $error['success'] = 'Success';
+        $error['city_obj'] = $city_obj;
+        // $error['company_city_obj'] = $_POST['company_city_obj'];
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
         echo $error_fin;
         wp_die();

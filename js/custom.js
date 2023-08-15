@@ -78,3 +78,26 @@ function fieldSelectProces( items ) {
         })
     }
 }
+
+jQuery(document).ready( function($){
+    $(".suggest").suggestions({
+        token: "69cff3e74a71d5ece8579d27a89e9532c70bcbf5",
+        type: "ADDRESS",
+        hint: "Select an option or continue typing",
+        language: "en",
+        bounds: "city-settlement",
+        constraints: {
+            locations: { country: "*" }
+        },
+        noSuggestionsHint: "Unknown city",
+        onSelect: function(suggestion) {
+            // console.log("data", suggestion);
+            var sugJson = JSON.stringify(suggestion);
+            $(this).next().next().val(sugJson);
+            // $('.addr0').val(suggestion.unrestricted_value);
+            // $('.addr2').val(suggestion.data.country);
+            // $('.addr3').val(suggestion.data.city);
+            // $('.addr10').val(suggestion.data.geo_lat + ',' + suggestion.data.geo_lon);
+        }
+    });
+});

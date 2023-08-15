@@ -36,14 +36,14 @@ function press_net_main_scripts_old() {
     wp_enqueue_style('main-min', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
     );
-    // wp_enqueue_style('magnific-popup', get_stylesheet_directory_uri() . '/src/magnific-popup/magnific-popup.css',	array(),
-    //     filemtime( get_stylesheet_directory() . '/src/magnific-popup/magnific-popup.css' )
-    // );
+    wp_enqueue_style('suggestions', get_stylesheet_directory_uri() . '/press-inc/suggestions/suggestions.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/press-inc/suggestions/suggestions.min.css' )
+    );
 
     // js
-    // wp_enqueue_script('magnific-popup', get_stylesheet_directory_uri() . '/src/magnific-popup/magnific-popup.min.js',	array('jquery'),
-    //     filemtime( get_stylesheet_directory() . '/src/magnific-popup/magnific-popup.min.js' )
-    // );
+    wp_enqueue_script('suggestions', get_stylesheet_directory_uri() . '/press-inc/suggestions/suggestions.min.js',	array('jquery'),
+        filemtime( get_stylesheet_directory() . '/press-inc/suggestions/suggestions.min.js' )
+    );
     wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery'),
         filemtime( get_stylesheet_directory() . '/dist/bundle.min.js' )
     );
@@ -66,7 +66,8 @@ function press_net_add_async_attribute( $tag, $handle ) {
         'magnific-popup',
         'bundle',
         'custom',
-        'filtr-req'
+        'filtr-req',
+        'suggestions'
 	);
 	foreach( $handles as $defer_script) {
 		if ( $defer_script === $handle ) {

@@ -131,7 +131,8 @@
                                         <span class="field-group__title__required">*</span>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" class="input" name="media_city" id="media_city" placeholder="City" value="" data-required="required" />
+                                        <input type="text" class="input suggest" name="media_city" id="media_city" placeholder="City" value="" data-required="required" />
+                                        <input type="hidden" name="city_obj" id="city_obj" value="">
                                     </div>
                                     <span class="field-group__warning-input">Field is required</span>
                                 </div>
@@ -172,7 +173,7 @@
                         </div>
                     </div>
 
-                    <div class="field-group mb24">
+                    <!-- <div class="field-group mb24">
                         <div class="field-group__title">
                             <span>Topics covered by the speaker</span>
                             <span class="field-group__title__required">*</span>
@@ -192,7 +193,7 @@
                             <input type="hidden" name="user_themes_edit" id="user_themes_edit" required value="" />
                         </div>
                         <span class="field-group__warning-input">Field is required</span>
-                    </div>
+                    </div> -->
 
                     <div class="field-group mb24">
                         <div class="field-group__title">

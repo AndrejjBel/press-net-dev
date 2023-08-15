@@ -138,14 +138,14 @@ const formEditPost = () => {
                                 contentType: false,
                                 data: formData,
                                 success: function(data){
-                                    console.dir(btn.parentElement.parentElement);
+                                    // console.dir(data);
                                     btn.parentElement.parentElement.classList.remove('active')
                                     btn.parentElement.parentElement.nextElementSibling.classList.add('active')
                                     setTimeout( () => {
                                         btn.parentElement.parentElement.nextElementSibling.classList.remove('active')
                                     }, 3000);
                                     // let data_fin = JSON.parse(data)
-                                    console.dir(data);
+                                    // console.dir(data);
                                 },
                                 error: () => {
                                     console.log('Ошибка отправки.');
