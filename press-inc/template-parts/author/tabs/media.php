@@ -105,6 +105,9 @@
                                 <span>Online media</span>
                                 <span>Radio</span>
                                 <span>TV</span>
+                                <span>Youtube</span>
+                                <span>Social Media</span>
+                                <span>Other</span>
                             </div>
                         </div>
                         <span class="field-group__warning-input">Field is required</span>
