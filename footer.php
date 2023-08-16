@@ -25,6 +25,7 @@ wp_footer();
 <form id="form-all">
     <?php wp_nonce_field( 'press-network', 'press-network' ); ?>
     <input type="hidden" name="current_user" id="current_user" value="<?php echo $current_user->ID; ?>">
+    <input type="hidden" name="post_type" id="post_type" value="<?php echo $post->post_type; ?>">
 </form>
 
 </body>

@@ -151,14 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+function modal() {
 // Модальные окна
-!function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
-document.addEventListener('DOMContentLoaded', function() {
+// !function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
+// document.addEventListener('DOMContentLoaded', function() {
     var modalButtons = document.querySelectorAll('.js-open-modal'),
     modal = document.querySelectorAll('.modal'),
     overlay      = document.querySelector('.js-overlay-modal'),
-    closeButtons = document.querySelectorAll('.js-modal-close');
-    body          = document.querySelector('body'),
+    closeButtons = document.querySelectorAll('.js-modal-close'),
+    body          = document.querySelector('body');
     modalButtons.forEach(function(item){
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
     if (overlay) {
         overlay.addEventListener('click', function() {
-            if ( modal.length > 0 ) {
+            if ( document.querySelector('.modal.active') ) {
                 document.querySelector('.modal.active').classList.remove('active');
                 overlay.classList.remove('active');
                 overlay.style.zIndex = '';
@@ -205,7 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
             body.style.overflowY = '';
         });
     }
-}); // end ready (Модальные окна)
+// }); // end ready (Модальные окна)
+}
+modal();
 
 // jQuery
 jQuery(document).ready( function($){
@@ -322,3 +325,5 @@ jQuery(document).ready( function($){
 	// });
 
 });
+
+export {modal};

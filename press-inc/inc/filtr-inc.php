@@ -12,10 +12,10 @@ function press_net_filtr_requests() {
         }
     }
     $args = array(
-    	'post_type'   => 'requests',
+    	'post_type'   => $post_type,
         'orderby'     => $orderby, // title, date
     	'order'       => $order, // ASC, DESC
-    	'suppress_filters' => true,
+    	// 'suppress_filters' => true,
         'fields' => 'ids'
     );
 
@@ -26,6 +26,14 @@ function press_net_filtr_requests() {
             'taxonomy' => REQUESTS_CAT,
 			'field'    => 'id',
 			'terms'    => explode(",", $_POST['categories'])
+        ];
+    }
+
+    if ( !empty($_POST['media_categories']) ) {
+        $args['tax_query'][] = [
+            'taxonomy' => MEDIA_CAT,
+			'field'    => 'id',
+			'terms'    => $_POST['media_categories']
         ];
     }
 
@@ -54,6 +62,10 @@ function press_net_filtr_requests() {
 
     $posts = press_net_filtr_requests_query($args);
 
+    if ( $post_type == MEDIA ) {
+        $posts = press_net_filtr_requests_query($args, -1);
+    }
+
     $posts_query = press_net_requests_query($args);
 
     $posts_query_json = json_encode($posts_query);
@@ -74,31 +86,53 @@ function press_net_filtr_requests_query($args, $posts_per_archive_page=10, $page
     $posts_obj = [];
     foreach ($posts as $post) {
         $post_obj = get_post( $post );
-        $media_parent = get_post( $post_obj->mass_media_parent_id );
-        $media_parent_date = get_the_date('d.m.Y H:i', $media_parent->ID);
-        $media_parent_url = get_permalink($media_parent->ID);
-        $post_url = get_permalink($post_obj->ID);
-        $thumbnail_url = get_the_post_thumbnail_url( $post_obj->ID, 'full' );
-        $post_date = get_the_date('d.m.Y H:i', $post_obj->ID);
-        $meta_btn_subs = press_net_subscribe_user_post_archive_is($post_obj->ID, 'subscribe_request');
-        $meta_btn_fav = press_net_favorites_user_post_is($post_obj->ID);
-        $meta_btn_read = press_net_mark_read_post_is($post_obj->ID);
-        $deadline = press_net_downcounter($post_obj->deadline, $format='timestamp');
-        $posts_obj[] = [
-            'id' => $post_obj->ID,
-            'post_date' => $post_date,
-            'title' => $post_obj->post_title,
-            'url' => $post_url,
-            'thumbnail_url' => $thumbnail_url,
-            'deadline' => $deadline,
-            'media_parent_id' => $post_obj->mass_media_parent_id,
-            'media_parent_title' => $media_parent->post_title,
-            'media_parent_url' => $media_parent_url,
-            'media_parent_city' => $media_parent->city,
-            'meta_btn_subs' => $meta_btn_subs,
-            'meta_btn_fav' => $meta_btn_fav,
-            'meta_btn_read' => $meta_btn_read,
-        ];
+        if ( $post_obj->post_type == REQUESTS ) {
+            $media_parent = get_post( $post_obj->mass_media_parent_id );
+            $media_parent_date = get_the_date('d.m.Y H:i', $media_parent->ID);
+            $media_parent_url = get_permalink($media_parent->ID);
+            $post_url = get_permalink($post_obj->ID);
+            $thumbnail_url = get_the_post_thumbnail_url( $post_obj->ID, 'full' );
+            $post_date = get_the_date('d.m.Y H:i', $post_obj->ID);
+            $meta_btn_subs = press_net_subscribe_user_post_archive_is($post_obj->ID, 'subscribe_request');
+            $meta_btn_fav = press_net_favorites_user_post_is($post_obj->ID);
+            $meta_btn_read = press_net_mark_read_post_is($post_obj->ID);
+            $deadline = press_net_downcounter($post_obj->deadline, $format='timestamp');
+            $posts_obj[] = [
+                'id' => $post_obj->ID,
+                'post_date' => $post_date,
+                'title' => $post_obj->post_title,
+                'url' => $post_url,
+                'thumbnail_url' => $thumbnail_url,
+                'deadline' => $deadline,
+                'media_parent_id' => $post_obj->mass_media_parent_id,
+                'media_parent_title' => $media_parent->post_title,
+                'media_parent_url' => $media_parent_url,
+                'media_parent_city' => $media_parent->city,
+                'meta_btn_subs' => $meta_btn_subs,
+                'meta_btn_fav' => $meta_btn_fav,
+                'meta_btn_read' => $meta_btn_read,
+            ];
+        } elseif ( $post_obj->post_type == MEDIA ) {
+            $post_url = get_permalink($post_obj->ID);
+            $thumbnail_url = get_the_post_thumbnail_url( $post_obj->ID, 'thumbnail' );
+            $meta_btn_subs = press_net_subscribe_user_post_archive_is($post_obj->ID, 'subscribe_media');
+            $cur_terms = get_the_terms( $post_obj->ID, MEDIA_CAT );
+            if( is_array( $cur_terms ) ){
+                $post_term = [];
+                foreach( $cur_terms as $cur_term ){
+                    $post_term[] = $cur_term->name;
+                }
+            }
+            $posts_obj[] = [
+                'id' => $post_obj->ID,
+                'title' => $post_obj->post_title,
+                'url' => $post_url,
+                'thumbnail_url' => $thumbnail_url,
+                'meta_btn_subs' => $meta_btn_subs,
+                'city' => $post_obj->city,
+                'terms' => implode(",", $post_term)
+            ];
+        }
     }
     wp_reset_postdata();
     $posts_fin = json_encode($posts_obj, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);

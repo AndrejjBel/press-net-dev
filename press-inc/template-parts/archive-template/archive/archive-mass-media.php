@@ -17,9 +17,14 @@
 
 <div class="archive-filter mt12">
     <div class="archive-filter__item">
-        <button type="button" name="button">
+        <button id="categories" type="button" name="button">
             <span>Categories</span>
         </button>
+        <div class="filtr-options media-categories">
+            <div class="filtr-options__wrap media-cat">
+                <?php press_net_media_cat_list();?>
+            </div>
+        </div>
     </div>
     <div class="archive-filter__item">
         <button type="button" name="button">

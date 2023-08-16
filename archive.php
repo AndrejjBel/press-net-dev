@@ -8,7 +8,7 @@
  */
 
 get_header();
-$post_type = get_post_type();
+$post_type = $post->post_type; // get_post_type();
 ?>
 
 	<main id="primary" class="site-main container">

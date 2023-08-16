@@ -55,7 +55,7 @@
                             <div class="header-generale__info__avatar__nav__content__nav">
                                 <ul>
                                     <li><a href="<?php echo press_net_get_user_link_lk(''); ?>" data-tab="profile">Profile and settings</a></li>
-                                    <li><a href="<?php echo press_net_get_user_link_lk('referer'); ?>" data-tab="referer">Referral program</a></li>
+                                    <!-- <li><a href="<?php //echo press_net_get_user_link_lk('referer'); ?>" data-tab="referer">Referral program</a></li> -->
                                 </ul>
                                 <ul>
                                     <li><a href="<?php echo wp_logout_url(); ?>" title="Logout">Logout</a></li>

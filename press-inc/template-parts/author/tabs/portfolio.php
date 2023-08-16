@@ -53,9 +53,9 @@
                     </div>
                 </div>
 
-                <div class="buttons-group-post add-post">
-                    <button type="button" name="btn-cancel-post-form" id="btn-cancel-post-form" class="button cancel-post-form" data-title="New publication">Cancel</button>
-                    <button type="button" name="btn-save-post-form" id="btn-save-post-form" class="button save-post-form">Save</button>
+                <div class="buttons-group-post add-port">
+                    <button type="button" name="btn-cancel-post-form" id="btn-cancel-port-form" class="button cancel-post-form" data-title="New publication">Cancel</button>
+                    <button type="button" name="btn-save-post-form" id="btn-save-port-form" class="button save-post-form">Save</button>
                 </div>
 
                 <input type="hidden" name="post_type" id="post_type" value="portfolio" />

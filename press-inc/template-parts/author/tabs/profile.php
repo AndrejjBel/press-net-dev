@@ -21,6 +21,9 @@
         <div class="author-wrap__main-your-office__content__tab__profile__name__type">
             <?php echo press_net_user_type(); ?>
         </div>
+        <div class="author-wrap__main-your-office__content__tab__profile__name__type">
+            <?php echo $authordata->description; ?>
+        </div>
     </div>
 
     <div class="author-wrap__main-your-office__content__tab__profile__info">

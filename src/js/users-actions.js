@@ -152,7 +152,8 @@ const assignWork = () => {
     if ( assignWorkBtns.length > 0 ) {
         assignWorkBtns.forEach((btn) => {
             btn.addEventListener('click', function() {
-                modal = document.querySelector('.modal[data-modal="' + btn.dataset.modal + '"]');
+                console.dir(btn);
+                let modal = document.querySelector('.modal[data-modal="' + btn.dataset.modal + '"]');
                 modal.querySelector('button').dataset.post = btn.dataset.post
             })
         });
@@ -229,4 +230,4 @@ function markReadAjax( formData, btn, btns ) {
     });
 }
 
-export {subscribePost, favoritesPost, markAllReadActions};
+export {subscribePost, favoritesPost, markAllReadActions, assignWork};

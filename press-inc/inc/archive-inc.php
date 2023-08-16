@@ -319,8 +319,8 @@ function press_net_request_cat_list($number = 10, $offset = 0, $hide_empty = tru
     </svg>';
 	$args = [
 		'taxonomy'      => [ $slug ],
-		'orderby'       => $orderby,
-		'order'         => $order,
+		// 'orderby'       => $orderby,
+		// 'order'         => $order,
 		'hide_empty'    => $hide_empty,
         'parent'        => 0,
         'number'        => $number,
@@ -384,5 +384,34 @@ function press_net_has_post_thumbnail($post_id) {
     } else {
         $logo = get_template_directory_uri() . '/img/icons/media-logo-no.svg';
         return ['thumb_url' => $logo, 'logo_delete' => ' btn-hidden'];
+    }
+}
+
+function press_net_media_cat_list($hide_empty = false) { // $number = 10, $offset = 0
+    $slug = MEDIA_CAT;
+    $order = 'name';
+    $orderby = 'ASC';
+    $icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6L9 17L4 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>';
+	$args = [
+		'taxonomy'      => $slug,
+		// 'orderby'       => $orderby,
+		// 'order'         => $order,
+		'hide_empty'    => $hide_empty,
+	];
+	$terms = get_terms( $args );
+	if( $terms && ! is_wp_error( $terms ) ){
+        echo '<div class="media-cat__item">
+            <input type="radio" name="media-cat" id="all" value="all">
+            <label for="all"><span>All</span></label>
+        </div>';
+        echo '<div class="media-cat__item razdelitel"></div>';
+		foreach( $terms as $term ){
+            echo '<div class="media-cat__item">
+                <input type="radio" name="media-cat" id="' . $term->term_id . '" value="' . $term->term_id . '">
+                <label for="' . $term->term_id . '"><span>' . $term->name . '</span></label>
+            </div>';
+        }
     }
 }

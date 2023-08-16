@@ -196,13 +196,13 @@ formDeletePost()
 
 const formAddPortfolio = () => {
     const formAddRequest = document.querySelector('form#form-add-request')
-    const buttonsGroupPost = document.querySelectorAll('.buttons-group-post.add-post button')
-    if ( !formAddRequest && buttonsGroupPost.length > 0 ) {
+    const buttonsGroupPost = document.querySelectorAll('.buttons-group-post.add-port button')
+    if ( buttonsGroupPost.length > 0 ) {
         const companyName = document.querySelector('#company-name')
         const titleAddForm = document.querySelector('#head-title-add-form span')
         buttonsGroupPost.forEach((btn) => {
             btn.addEventListener('click', (e) => {
-                if ( btn.id == 'btn-cancel-post-form' ) {
+                if ( btn.id == 'btn-cancel-port-form' ) {
                     e.preventDefault();
                     btn.parentElement.parentElement.parentElement.classList.remove('active')
                     btn.parentElement.parentElement.reset();
@@ -210,7 +210,8 @@ const formAddPortfolio = () => {
                     btn.parentElement.parentElement.previousElementSibling.children[0].children[1].classList.remove('active')
                     btn.parentElement.parentElement.previousElementSibling.children[0].children[2].innerText = ''
                     // titleAddForm.innerText = 'New company'
-                } else if ( btn.id == 'btn-save-post-form' ) {
+                } else if ( btn.id == 'btn-save-port-form' ) {
+                    console.dir(btn);
                     e.preventDefault();
                     if ( inputValidate(btn.parentElement.parentElement) ) {
                         const formAuthorNonce = document.querySelector('form#author_nonce')
