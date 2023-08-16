@@ -64,7 +64,7 @@
                 <span>About me</span>
             </div>
             <div class="input-group user-description">
-                <textarea type="textarea" rows="4" class="textarea" name="description" id="description" placeholder="Text about me"><?php echo press_net_get_authordata('description'); ?></textarea>
+                <textarea type="textarea" rows="4" class="textarea" name="description" id="description" placeholder="About me"><?php echo press_net_get_authordata('description'); ?></textarea>
             </div>
         </div>
 
