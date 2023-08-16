@@ -74,30 +74,11 @@ function press_net_downcounter_test($date, $format='datetime'){
     } elseif ( $format == 'timestamp' ) {
         $check_time = $date - time();
     }
-
-    // if($check_time <= 0){
-    //     return false;
-    // }
-    // $days = floor($check_time/86400);
-    // $hours = floor(($check_time%86400)/3600);
-    // $minutes = floor(($check_time%3600)/60);
-    // $seconds = $check_time%60;
-
-    // $str = '';
-    // if($days > 0) $str .= num_word($days,array('day','days','days')).' ';
-    // if($days < 1 && $hours > 0) $str .= num_word($hours,array('hour','hours','hours')).' ';
-    // if($days < 0 && $hours < 0) $str .= 'Deadline';
-
-    // if($days > 0) $str .= num_word($days,array('день','дня','дней')).' ';
-    // if($hours > 0) $str .= declension($hours,array('час','часа','часов')).' ';
-    // if($minutes > 0) $str .= declension($minutes,array('минута','минуты','минут')).' ';
-    // if($seconds > 0) $str .= declension($seconds,array('секунда','секунды','секунд'));
-
     return $check_time;
 }
 
 
-function press_net_user_media_parent_list( $post_type='mass-media' ) {
+function press_net_user_media_parent_list( $post_type=MEDIA ) {
     global $current_user;
     $my_posts = get_posts( array(
     	'numberposts' => -1,
@@ -132,7 +113,7 @@ function press_net_media_requests_list($post_id) {
     	'numberposts' => -1,
     	'orderby'     => 'date',
     	'order'       => 'DESC',
-    	'post_type'   => 'requests',
+    	'post_type'   => REQUESTS,
     	'suppress_filters' => true,
         'meta_query' => [
     		[
@@ -182,7 +163,7 @@ function press_net_author_requests_list() {
     	'numberposts' => -1,
     	'orderby'     => 'date',
     	'order'       => 'DESC',
-    	'post_type'   => 'requests',
+    	'post_type'   => REQUESTS,
         'author'      => $author_id,
     	'suppress_filters' => true,
     ) );
@@ -289,7 +270,7 @@ function press_net_post_list_json() { // $post_type='mass-media'
     	'numberposts' => -1,
     	'orderby'     => 'title', // title, date
     	'order'       => 'ASC', // ASC, DESC
-    	'post_type'   => 'mass-media',
+    	'post_type'   => MEDIA,
     	'suppress_filters' => true,
     ) );
     global $post;
@@ -308,7 +289,7 @@ function press_net_post_list_json() { // $post_type='mass-media'
     	'numberposts' => -1,
     	'orderby'     => 'title', // title, date
     	'order'       => 'ASC', // ASC, DESC
-    	'post_type'   => 'company',
+    	'post_type'   => COMPANY,
     	'suppress_filters' => true,
     ) );
     global $post;
@@ -385,7 +366,7 @@ function press_net_request_cat_list($number = 10, $offset = 0, $hide_empty = tru
 function press_net_request_type($type) {
     $posts = get_posts( array(
     	'numberposts' => -1,
-    	'post_type'   => 'requests',
+    	'post_type'   => REQUESTS,
     	'suppress_filters' => true,
         'meta_query' => [ [
             'key' => 'request_type',

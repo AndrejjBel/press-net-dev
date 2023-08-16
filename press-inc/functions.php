@@ -105,3 +105,16 @@ add_action( 'init', function(){
 // 		exit();
 // 	}
 // }
+
+add_action( 'pre_get_posts', 'press_net_pagesize', 1 );
+function press_net_pagesize( $query ) {
+
+	// Exit if this is the admin panel or not the main request.
+	if( is_admin() || ! $query->is_main_query() )
+		return;
+
+	// Display all records if it is a record type archive MEDIA
+	if( $query->is_post_type_archive(MEDIA) ){
+		$query->set( 'posts_per_page', -1 );
+	}
+}

@@ -233,7 +233,7 @@ function press_net_recovery_pass () {
     }
 }
 
-// Регистраниция пользователей
+// User registration
 add_action('wp_ajax_press_net_register', 'press_net_register_func');
 add_action('wp_ajax_nopriv_press_net_register', 'press_net_register_func');
 
@@ -567,10 +567,10 @@ function adding_post_when_registering_user( $post_author, $post_data ) {
     $post_content = '';
 
     if ( $post_data['account_type'] == 'expert' ) {
-        $post_type = 'company';
+        $post_type = COMPANY;
         $post_title = $post_data['company_title'];
     } elseif ( $post_data['account_type'] == 'journalist' ) {
-        $post_type = 'mass-media';
+        $post_type = MEDIA;
         $post_title = $post_data['media_title'];
     }
 
@@ -596,7 +596,7 @@ function adding_post_when_registering_user( $post_author, $post_data ) {
         $post_id = wp_insert_post( $post_arr );
         if ($post_id) {
             // Post type company
-            if ( $post_type == 'company' ) {
+            if ( $post_type == COMPANY ) {
                 update_post_meta( $post_id, 'job_title', $post_data['company_job_title'] );
                 if ( $post_data['company_website'] ) {
                     update_post_meta( $post_id, 'website', $post_data['company_website'] );
@@ -608,7 +608,7 @@ function adding_post_when_registering_user( $post_author, $post_data ) {
                     $array = json_decode(stripslashes($post_data['company_city_obj']));
                     update_post_meta( $post_id, 'city_obj', $array );
                 }
-            } elseif ( $post_type == 'mass-media' ) {
+            } elseif ( $post_type == MEDIA ) {
                 update_post_meta( $post_id, 'job_title', $post_data['media_job_title'] );
                 update_post_meta( $post_id, 'website', $post_data['media_website'] );
                 update_post_meta( $post_id, 'city', $post_data['media_city'] );

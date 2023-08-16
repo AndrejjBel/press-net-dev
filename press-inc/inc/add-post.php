@@ -8,11 +8,11 @@ function press_net_post_add() {
     if ( !wp_verify_nonce( $_POST['press_net_add_post'], 'press_net_add_post' ) ) {
         $error['empty_nonce'] = 'The request failed';
     }
-    if ( $_POST['post_type'] != 'requests' ) {
+    if ( $_POST['post_type'] != REQUESTS ) {
         if ( $_POST['current_user_id'] != $_POST['author_archive_id'] ) {
             $error['empty_not_enough_rights'] = 'Not Enough Rights';
         }
-    } elseif ( $_POST['post_type'] == 'requests' ) {
+    } elseif ( $_POST['post_type'] == REQUESTS ) {
         if ( !$_POST['current_user_id'] ) {
             $error['empty_not_enough_rights'] = 'Not Enough Rights';
         }
@@ -22,7 +22,7 @@ function press_net_post_add() {
         $error['empty_post_title'] = 'No Post title';
     }
     // Post type company
-    if ( $_POST['post_type'] == 'company' ) {
+    if ( $_POST['post_type'] == COMPANY ) {
         if ( !$_POST['job_title'] ) {
             $error['empty_job_title'] = 'No Job title';
         }
@@ -56,7 +56,7 @@ function press_net_post_add() {
         $post_id = wp_insert_post( $post_data );
         if ($post_id) {
             // Post type company
-            if ( $_POST['post_type'] == 'company' ) {
+            if ( $_POST['post_type'] == COMPANY ) {
                 update_post_meta( $post_id, 'job_title', $_POST['job_title'] );
                 if ( $_POST['website'] ) {
                     update_post_meta( $post_id, 'website', $_POST['website'] );
@@ -74,7 +74,7 @@ function press_net_post_add() {
                 if ( $_POST['subject'] ) {
                     wp_set_object_terms( $post_id, $_POST['subject'], MEDIA_CAT );
                 }
-            } elseif ( $_POST['post_type'] == 'requests' ) {
+            } elseif ( $_POST['post_type'] == REQUESTS ) {
                 update_post_meta( $post_id, 'request_type', $_POST['request_type'] );
                 update_post_meta( $post_id, 'signs_number_from', $_POST['signs_number_from'] );
                 update_post_meta( $post_id, 'signs_number_upto', $_POST['signs_number_upto'] );
@@ -86,7 +86,7 @@ function press_net_post_add() {
                     foreach ($rubrics as $rubric) {
                         $rubrics_num[] = (int)$rubric;
                     }
-                    wp_set_object_terms( $post_id, $rubrics_num, 'requests-cat' );
+                    wp_set_object_terms( $post_id, $rubrics_num, REQUESTS_CAT );
                 }
             }
             if ( !empty( $_FILES['my_image_upload']['tmp_name'] ) and $_FILES['my_image_upload']['error'] == 0 ) {
@@ -128,7 +128,7 @@ function press_net_post_edit() {
         $error['empty_post_title'] = 'No Post title';
     }
     // Post type company
-    if ( $_POST['post_type'] == 'company' ) {
+    if ( $_POST['post_type'] == COMPANY ) {
         if ( !$_POST['job_title'] ) {
             $error['empty_job_title'] = 'No Job title';
         }

@@ -232,7 +232,7 @@ if ( is_user_logged_in() ) { ?>
                                 <div class="input-group field-select">
                                     <input type="text" class="input" name="subject" id="subject" placeholder="Subject" data-required="required" readonly />
                                     <div class="field-select__options">
-                                        <?php press_net_tax_list('mass-media-cat', '', '', false, '<span>', '</span>');?>
+                                        <?php press_net_tax_list(MEDIA_CAT, '', '', false, '<span>', '</span>');?>
                                     </div>
                                 </div>
                                 <span class="field-group__warning-input">Field is required</span>

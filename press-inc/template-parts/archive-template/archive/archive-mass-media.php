@@ -42,7 +42,7 @@
         endwhile;
     ?>
 </div>
-<?php the_posts_navigation(); ?>
+<?php //the_posts_navigation(); ?>
 
 <?php
 else :
