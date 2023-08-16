@@ -1,10 +1,4 @@
 <?php
-define( 'COMPANY', 'company' );
-define( 'MEDIA', 'mass-media' );
-define( 'COMPANY_CAT', 'company-cat' );
-define( 'MEDIA_CAT', 'mass-media-cat' );
-define( 'REQUESTS', 'requests' );
-define( 'REQUESTS_CAT', 'requests-cat' );
 require get_template_directory() . '/press-inc/inc/smtp-mailer.php';
 require get_template_directory() . '/press-inc/inc/post-types.php';
 require get_template_directory() . '/press-inc/inc/functions-inc.php';
