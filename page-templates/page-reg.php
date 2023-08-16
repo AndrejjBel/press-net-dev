@@ -230,7 +230,7 @@ if ( is_user_logged_in() ) { ?>
                                     <span class="field-group__title__required">*</span>
                                 </div>
                                 <div class="input-group field-select">
-                                    <input type="text" class="input" name="subject" id="subject" placeholder="Subject" value="" data-required="required" readonly />
+                                    <input type="text" class="input" name="subject" id="subject" placeholder="Subject" data-required="required" readonly />
                                     <div class="field-select__options">
                                         <?php press_net_tax_list('mass-media-cat', '', '', false, '<span>', '</span>');?>
                                     </div>

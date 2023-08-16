@@ -598,33 +598,30 @@ function adding_post_when_registering_user( $post_author, $post_data ) {
             // Post type company
             if ( $post_type == 'company' ) {
                 update_post_meta( $post_id, 'job_title', $post_data['company_job_title'] );
-                if ( empty($post_data['company_website']) ) {
+                if ( $post_data['company_website'] ) {
                     update_post_meta( $post_id, 'website', $post_data['company_website'] );
                 }
-                if ( empty($post_data['city']) ) {
+                if ( $post_data['company_city'] ) {
                     update_post_meta( $post_id, 'city', $post_data['company_city'] );
                 }
-                if ( empty($post_data['company_city_obj']) ) {
-                    $array = json_decode($post_data['company_city_obj']);
+                if ( $post_data['company_city_obj'] ) {
+                    $array = json_decode(stripslashes($post_data['company_city_obj']));
                     update_post_meta( $post_id, 'city_obj', $array );
                 }
             } elseif ( $post_type == 'mass-media' ) {
                 update_post_meta( $post_id, 'job_title', $post_data['media_job_title'] );
                 update_post_meta( $post_id, 'website', $post_data['media_website'] );
                 update_post_meta( $post_id, 'city', $post_data['media_city'] );
-                if ( empty($post_data['media_city_obj']) ) {
-                    $array = json_decode($post_data['media_city_obj']);
-                    update_post_meta( $post_id, 'city_obj', $array );
-                }
-                if ( empty($post_data['format']) ) {
-                    update_post_meta( $post_id, 'format', $post_data['format'] );
-                }
-                if ( empty($post_data['subject']) ) {
-                    wp_set_object_terms( $post_id, $post_data['subject'], MEDIA_CAT );
+                $array = json_decode(stripslashes($post_data['media_city_obj']));
+                update_post_meta( $post_id, 'city_obj', $array );
+                update_post_meta( $post_id, 'format', $post_data['format'] );
+                $res = wp_set_object_terms( $post_id, $post_data['subject'], MEDIA_CAT );
+                if( ! is_wp_error( $res ) ){
+                    $res = array_map( 'intval', $res );
                 }
             }
             $error['success'] = 'Success';
-            // $error['POST'] = $post_data;
+            // $error['res'] = $res;
             $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
             echo $error_fin;
         }
