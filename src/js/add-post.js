@@ -211,7 +211,6 @@ const formAddPortfolio = () => {
                     btn.parentElement.parentElement.previousElementSibling.children[0].children[2].innerText = ''
                     // titleAddForm.innerText = 'New company'
                 } else if ( btn.id == 'btn-save-port-form' ) {
-                    console.dir(btn);
                     e.preventDefault();
                     if ( inputValidate(btn.parentElement.parentElement) ) {
                         const formAuthorNonce = document.querySelector('form#author_nonce')
