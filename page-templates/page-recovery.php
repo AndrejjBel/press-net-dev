@@ -71,7 +71,7 @@ get_header();
 
         <div class="login-register-page__content">
             <div class="welcome-text">
-                <h3>Перейдите по ссылке из письма...</h3>
+                <h3>Follow the link in the email...</h3>
             </div>
         </div>
 

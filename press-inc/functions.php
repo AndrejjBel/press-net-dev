@@ -108,13 +108,40 @@ add_action( 'init', function(){
 
 add_action( 'pre_get_posts', 'press_net_pagesize', 1 );
 function press_net_pagesize( $query ) {
-
 	// Exit if this is the admin panel or not the main request.
 	if( is_admin() || ! $query->is_main_query() )
 		return;
-
 	// Display all records if it is a record type archive MEDIA
 	if( $query->is_post_type_archive(MEDIA) ){
 		$query->set( 'posts_per_page', -1 );
 	}
 }
+
+add_action( 'template_redirect', function() {
+    if ( is_page( 'edit-post' ) ) {
+        global $user_ID;
+        $location = site_url() . '/'. REQUESTS;
+        $post_obj = get_post( $_GET['post'] );
+        if ( $post_obj ) {
+            if ( $user_ID != $post_obj->post_author ) {
+                wp_safe_redirect( $location );
+                exit;
+            }
+        } else {
+            wp_safe_redirect( $location );
+            exit;
+        }
+    }
+
+    if ( is_page( ['login', 'signup', 'forgot'] ) ) {
+        if ( is_user_logged_in() ) {
+            wp_safe_redirect( '/' );
+        }
+    }
+
+    if( is_post_type_archive( [MEDIA, REQUESTS, COMPANY] ) ){
+        if ( !is_user_logged_in() ) {
+            wp_safe_redirect( '/login' );
+        }
+    }
+} );

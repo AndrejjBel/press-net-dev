@@ -5,12 +5,7 @@
  */
 
 get_header();
-
-if ( is_user_logged_in() ) { ?>
-  <script type="text/javascript">
-    document.location.href = '/';
-  </script>
-<?php } ?>
+?>
 
 <main id="primary" class="site-main reg-page container">
 

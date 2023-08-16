@@ -1,21 +1,4 @@
 <?php
-add_action( 'template_redirect', function() {
-    if ( is_page( 'edit-post' ) ) {
-        global $user_ID;
-        $location = site_url() . '/'. REQUESTS;
-        $post_obj = get_post( $_GET['post'] );
-        if ( $post_obj ) {
-            if ( $user_ID != $post_obj->post_author ) {
-                wp_safe_redirect( $location );
-                exit;
-            }
-        } else {
-            wp_safe_redirect( $location );
-            exit;
-        }
-    }
-} );
-
 function press_net_rights_edit_post($post_id) {
     global $user_ID;
     $post_obj = get_post( $post_id );

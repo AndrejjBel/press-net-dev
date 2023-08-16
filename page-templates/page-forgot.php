@@ -9,12 +9,6 @@ get_header();
 
 <main id="primary" class="site-main forgot-page container">
 
-    <?php if ( is_user_logged_in() ) { ?>
-        <script type="text/javascript">
-        document.location.href = '/';
-        </script>
-    <?php } ?>
-
     <!-- Page Content
     ================================================== -->
     <div class="login-register-page">

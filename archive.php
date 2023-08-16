@@ -8,11 +8,12 @@
  */
 
 get_header();
+$post_type = get_post_type();
 ?>
 
 	<main id="primary" class="site-main container">
 
-		<?php get_template_part( 'press-inc/template-parts/archive-template/archive/archive', get_post_type() ); ?>
+		<?php get_template_part( 'press-inc/template-parts/archive-template/archive/archive', $post_type ); ?>
 
 	</main><!-- #main -->
 
