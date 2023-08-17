@@ -25,8 +25,8 @@
         <li>
             <a href="#" data-tab="portfolio">Portfolio</a>
         </li>
-        <li>
+        <!-- <li>
             <a href="#" data-tab="referer">Referral program</a>
-        </li>
+        </li> -->
     </ul>
 </nav>
