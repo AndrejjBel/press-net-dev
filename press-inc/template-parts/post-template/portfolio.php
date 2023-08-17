@@ -54,7 +54,7 @@
         </div>
 
         <div class="buttons-group-post edit-post">
-            <button type="button" name="btn-cancel-post-form" id="btn-cancel-post-form" class="button cancel-post-form" data-title="New publication">Cancel</button>
+            <button type="button" name="btn-cancel-post-form" id="btn-cancel-edit-post-form" class="button cancel-post-form" data-title="New publication">Cancel</button>
             <button type="button" name="btn-save-post-form" id="btn-edit-post-form" class="button save-post-form">Save</button>
         </div>
 

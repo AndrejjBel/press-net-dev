@@ -63,7 +63,7 @@ function press_net_post_add() {
             'post_author'   => $_POST['author_archive_id'],
             'post_status'   => $post_status,
             'post_type'     => $_POST['post_type'],
-            'post_title'    => $_POST['post_title'],
+            'post_title'    => stripslashes($_POST['post_title']),
             'post_content'  => $description,
         );
         $post_id = wp_insert_post( $post_data );
@@ -170,7 +170,7 @@ function press_net_post_edit() {
         $city_obj = json_decode(stripslashes($_POST['city_obj']));
         $my_post = [
             'ID' => $_POST['post_id'],
-            'post_title' => $_POST['post_title'],
+            'post_title' => stripslashes($_POST['post_title']),
             // 'meta_input' => [
             //     'job_title' => $_POST['job_title'],
             //     'website' => $_POST['website'],
