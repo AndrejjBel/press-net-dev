@@ -143,7 +143,7 @@ const formEditPost = () => {
                                     btn.parentElement.parentElement.nextElementSibling.classList.add('active')
                                     setTimeout( () => {
                                         btn.parentElement.parentElement.nextElementSibling.classList.remove('active')
-                                    }, 3000);
+                                    }, 400);
                                     // let data_fin = JSON.parse(data)
                                     // console.dir(data);
                                 },

@@ -2,11 +2,11 @@
     global $authordata, $current_user, $user_ID;
     $author_id = $authordata->ID;
     if ( press_net_current_user_type('expert') ) {
-        $post_type = 'company';
+        $post_type = COMPANY;
         $title_block = 'My companies';
     }
     if ( press_net_current_user_type('journalist') ) {
-        $post_type = 'mass-media';
+        $post_type = MEDIA;
         $title_block = 'My media';
     }
 ?>
@@ -33,5 +33,15 @@
                 <?php press_net_get_user_posts($post_type, false); ?>
             </div>
         </div>
+        <?php //if () { ?>
+        <?php //} ?>
+
+        <div class="author-wrap__main-your-office__content__tab__profile__info__company profile-company mt20">
+            <div class="profile-company__title-block">Portfolio</div>
+            <div class="profile-company__items">
+                <?php press_net_get_user_posts(PORTFOLIO, false); ?>
+            </div>
+        </div>
+
     </div>
 </div>

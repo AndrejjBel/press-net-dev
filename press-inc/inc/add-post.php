@@ -38,6 +38,14 @@ function press_net_post_add() {
             $error['empty_city'] = 'No city';
         }
     }
+    if ( $_POST['post_type'] == PORTFOLIO ) {
+        if ( !$_POST['link'] ) {
+            $error['empty_link'] = 'No link';
+        }
+        if ( !$_POST['portf_date'] ) {
+            $error['empty_portf_date'] = 'No portfolio date';
+        }
+    }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
         $error['POST'] = $_POST;
@@ -46,15 +54,24 @@ function press_net_post_add() {
         wp_die();
     } else {
         $post_status = 'publish';
+        if ( $_POST['description'] ) {
+            $description = $_POST['description'];
+        } else {
+            $description = '';
+        }
         $post_data = array(
             'post_author'   => $_POST['author_archive_id'],
             'post_status'   => $post_status,
             'post_type'     => $_POST['post_type'],
             'post_title'    => $_POST['post_title'],
-            'post_content'  => $_POST['description'],
+            'post_content'  => $description,
         );
         $post_id = wp_insert_post( $post_data );
         if ($post_id) {
+            if ( $_POST['city_obj'] ) {
+                $array = json_decode(stripslashes($_POST['city_obj']));
+                update_post_meta( $post_id, 'city_obj', $array );
+            }
             // Post type company
             if ( $_POST['post_type'] == COMPANY ) {
                 update_post_meta( $post_id, 'job_title', $_POST['job_title'] );
@@ -88,6 +105,9 @@ function press_net_post_add() {
                     }
                     wp_set_object_terms( $post_id, $rubrics_num, REQUESTS_CAT );
                 }
+            } elseif ( $_POST['post_type'] == PORTFOLIO ) {
+                update_post_meta( $post_id, 'portfolio_link', $_POST['link'] );
+                update_post_meta( $post_id, 'portfolio_date', strtotime($_POST['portf_date']) );
             }
             if ( !empty( $_FILES['my_image_upload']['tmp_name'] ) and $_FILES['my_image_upload']['error'] == 0 ) {
                 $attachment_id = media_handle_upload( 'my_image_upload', 0 );
@@ -133,6 +153,14 @@ function press_net_post_edit() {
             $error['empty_job_title'] = 'No Job title';
         }
     }
+    if ( $_POST['post_type'] == PORTFOLIO ) {
+        if ( !$_POST['link'] ) {
+            $error['empty_link'] = 'No link';
+        }
+        if ( !$_POST['portf_date'] ) {
+            $error['empty_portf_date'] = 'No portfolio date';
+        }
+    }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
@@ -143,15 +171,35 @@ function press_net_post_edit() {
         $my_post = [
             'ID' => $_POST['post_id'],
             'post_title' => $_POST['post_title'],
-            'meta_input' => [
-                'job_title' => $_POST['job_title'],
-                'website' => $_POST['website'],
-                'city' => $_POST['city'],
-                'city_obj' => $city_obj,
-            ],
+            // 'meta_input' => [
+            //     'job_title' => $_POST['job_title'],
+            //     'website' => $_POST['website'],
+            //     'city' => $_POST['city'],
+            //     'city_obj' => $city_obj,
+            // ],
         ];
         // Обновляем
         wp_update_post( wp_slash($my_post) );
+        if ( $_POST['job_title'] ) {
+            update_post_meta( $_POST['post_id'], 'job_title', $_POST['job_title'] );
+        }
+        if ( $_POST['website'] ) {
+            update_post_meta( $_POST['post_id'], 'website', $_POST['website'] );
+        }
+        if ( $_POST['city'] ) {
+            update_post_meta( $_POST['post_id'], 'city', $_POST['city'] );
+        }
+        if ( $_POST['city_obj'] ) {
+            $array = json_decode(stripslashes($_POST['city_obj']));
+            update_post_meta( $_POST['post_id'], 'city_obj', $array );
+        }
+        if ( $_POST['link'] ) {
+            update_post_meta( $_POST['post_id'], 'portfolio_link', $_POST['link'] );
+        }
+        if ( $_POST['portf_date'] ) {
+            update_post_meta( $_POST['post_id'], 'portfolio_date', strtotime($_POST['portf_date']) );
+        }
+
         if ( $_POST['format'] ) {
             update_post_meta( $_POST['post_id'], 'format', $_POST['format'] );
         }
@@ -194,10 +242,14 @@ function press_net_post_delete() {
     if ( wp_verify_nonce( $_POST['press_net_add_post'], 'press_net_add_post' )
         && $_POST['current_user_id'] == $_POST['author_archive_id']
     ) {
-        wp_delete_post($_POST['post_id']);
-        echo 'Пост удален';
+        // $post_id = $_POST['post_id'];
+        // global $wpdb;
+        // $wpdb->delete( $wpdb->postmeta, [ 'post_id'=>$post_id ] );
+        // clean_post_cache( $post_id );
+        wp_delete_post($_POST['post_id'], true);
+        echo 'Post deleted';
     } else {
-        echo 'Ошибка!';
+        echo 'Error!';
     }
     wp_die();
 }

@@ -140,7 +140,7 @@
     </div>
     <div class="content-tab-user__content">
         <div class="content-tab-user__content__posts">
-            <?php press_net_get_user_posts('mass-media', true); ?>
+            <?php press_net_get_user_posts(MEDIA, true); ?>
         </div>
     </div>
 </div>

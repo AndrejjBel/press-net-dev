@@ -311,13 +311,13 @@ function press_net_user_portfolio_add() {
         $portfolio = get_user_meta( $_POST['current_user_id'], 'portfolio' );
         if ( !$portfolio ) {
             $portfolio_new = [];
-            $portfolio_new[$_POST['post_title']] = $_POST['post_link'];
+            $portfolio_new[stripcslashes($_POST['post_title'])] = $_POST['post_link'];
         } else {
             $portfolio_new = [];
             foreach ($portfolio[0] as $key => $value) {
                 $portfolio_new[$key] = $value;
             }
-            $portfolio_new[$_POST['post_title']] = $_POST['post_link'];
+            $portfolio_new[stripcslashes($_POST['post_title'])] = $_POST['post_link'];
         }
         update_user_meta( $_POST['author_archive_id'], 'portfolio', $portfolio_new );
         $error['class'] = 'success';
@@ -353,19 +353,19 @@ function press_net_user_portfolio_edit() {
     } else {
         $portfolio = get_user_meta( $_POST['current_user_id'], 'portfolio' );
         $portfolio_new = [];
-        if ( $_POST['post_title'] !== $_POST['post_title_old']) {
+        if ( stripcslashes($_POST['post_title']) !== stripcslashes($_POST['post_title_old'])) {
             foreach ($portfolio[0] as $key => $value) {
-                if ( $key == $_POST['post_title_old'] ) {
-                    $portfolio_new[$_POST['post_title']] = $_POST['post_link'];
+                if ( $key == stripcslashes($_POST['post_title_old']) ) {
+                    $portfolio_new[stripcslashes($_POST['post_title'])] = $_POST['post_link'];
                 } else {
                     $portfolio_new[$key] = $value;
                 }
             }
-            unset($portfolio_new[$_POST['post_title_old']]);
+            unset($portfolio_new[stripcslashes($_POST['post_title_old'])]);
         } else {
             foreach ($portfolio[0] as $key => $value) {
-                if ( $key == $_POST['post_title'] ) {
-                    $portfolio_new[$_POST['post_title']] = $_POST['post_link'];
+                if ( $key == stripcslashes($_POST['post_title']) ) {
+                    $portfolio_new[stripcslashes($_POST['post_title'])] = $_POST['post_link'];
                 } else {
                     $portfolio_new[$key] = $value;
                 }
@@ -474,7 +474,7 @@ function press_net_get_user_portfolio() {
                                 <span class="field-group__title__required">*</span>
                             </div>
                             <div class="input-group">
-                                <input type="text" class="input" name="post_title" id="post_title" placeholder="Post title" required value="<?php echo $key; ?>" />
+                                <input type="text" class="input" name="post_title" id="post_title" placeholder="Post title" required value='<?php echo $key; ?>' />
                             </div>
                             <span class="field-group__warning-input">Field is required</span>
                         </div>
