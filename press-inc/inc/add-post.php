@@ -42,9 +42,9 @@ function press_net_post_add() {
         if ( !$_POST['link'] ) {
             $error['empty_link'] = 'No link';
         }
-        if ( !$_POST['portf_date'] ) {
-            $error['empty_portf_date'] = 'No portfolio date';
-        }
+        // if ( !$_POST['portf_date'] ) {
+        //     $error['empty_portf_date'] = 'No portfolio date';
+        // }
     }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
@@ -157,9 +157,9 @@ function press_net_post_edit() {
         if ( !$_POST['link'] ) {
             $error['empty_link'] = 'No link';
         }
-        if ( !$_POST['portf_date'] ) {
-            $error['empty_portf_date'] = 'No portfolio date';
-        }
+        // if ( !$_POST['portf_date'] ) {
+        //     $error['empty_portf_date'] = 'No portfolio date';
+        // }
     }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';

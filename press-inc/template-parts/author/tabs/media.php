@@ -123,7 +123,7 @@
                             <img id="logo-result" src="<?php echo get_template_directory_uri(); ?>/img/icons/media-logo-no.svg" data-read="FReadLogo" alt="">
                             <input type="file" name="my_image_upload" id="media_logo"  multiple="false"
                                 accept="image/jpeg, image/png, image/pjpeg, image/webp" />
-                            <label for="media_logo">Upload media logo</label>
+                            <label for="media_logo" class="button save-post-form">Upload media logo</label>
                         </div>
                     </div>
                 </div>
