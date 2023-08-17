@@ -16,9 +16,9 @@ const headTitleName = () => {
     const archiveAuthor = document.querySelector('.archive.author')
     if ( archiveAuthor ) {
         const formAddRequest = document.querySelector('form#form-add-request')
-        const postTitle = document.querySelectorAll('#post_title')
-        const jobTitle = document.querySelectorAll('#job_title')
-        if ( !formAddRequest && postTitle.length > 0 ) {
+        const postTitle = document.querySelectorAll('form#add-post-form input#post_title')
+        const jobTitle = document.querySelectorAll('form#add-post-form input#job_title')
+        if ( postTitle.length > 0 ) {
             postTitle.forEach((item) => {
                 item.addEventListener('input', (e) => {
                     item.form.previousElementSibling.children[0].children[0].innerText = item.value
