@@ -44,10 +44,10 @@
             <div class="field-group">
                 <div class="field-group__title">
                     <span>Date portfolio</span>
-                    <span class="field-group__title__required">*</span>
+                    <!-- <span class="field-group__title__required">*</span> -->
                 </div>
                 <div class="input-group">
-                    <input type="date" class="input" name="portf_date" id="portf_date" min="" required value="<?php echo wp_date( 'Y-m-d', $post->portfolio_date ); ?>" />
+                    <input type="date" class="input" name="portf_date" id="portf_date" min="" value="<?php echo wp_date( 'Y-m-d', $post->portfolio_date ); ?>" />
                 </div>
                 <span class="field-group__warning-input">Field is required</span>
             </div>
