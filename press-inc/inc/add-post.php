@@ -198,6 +198,8 @@ function press_net_post_edit() {
         }
         if ( $_POST['portf_date'] ) {
             update_post_meta( $_POST['post_id'], 'portfolio_date', strtotime($_POST['portf_date']) );
+        } else {
+            delete_post_meta( $_POST['post_id'], 'portfolio_date' );
         }
 
         if ( $_POST['format'] ) {
