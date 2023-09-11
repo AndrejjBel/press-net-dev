@@ -85,11 +85,12 @@ function press_net_post_add() {
                 update_post_meta( $post_id, 'job_title', $_POST['job_title'] );
                 update_post_meta( $post_id, 'website', $_POST['website'] );
                 update_post_meta( $post_id, 'city', $_POST['city'] );
-                if ( $_POST['format'] ) {
-                    update_post_meta( $post_id, 'format', $_POST['format'] );
+                if ( $_POST['format_obj'] ) {
+                    // update_post_meta( $post_id, 'format', $_POST['format'] );
+                    wp_set_object_terms( $post_id, tax_arr($_POST['format_obj']), FORMAT );
                 }
-                if ( $_POST['subject'] ) {
-                    wp_set_object_terms( $post_id, $_POST['subject'], MEDIA_CAT );
+                if ( $_POST['subject_obj'] ) {
+                    wp_set_object_terms( $post_id, tax_arr($_POST['subject_obj']), MEDIA_CAT );
                 }
             } elseif ( $_POST['post_type'] == REQUESTS ) {
                 update_post_meta( $post_id, 'request_type', $_POST['request_type'] );
@@ -202,12 +203,11 @@ function press_net_post_edit() {
             delete_post_meta( $_POST['post_id'], 'portfolio_date' );
         }
 
-        if ( $_POST['format'] ) {
-            update_post_meta( $_POST['post_id'], 'format', $_POST['format'] );
+        if ( $_POST['format_obj'] ) {
+            wp_set_object_terms( $_POST['post_id'], tax_arr($_POST['format_obj']), FORMAT );
         }
-        if ( $_POST['subject'] ) {
-            wp_set_object_terms( $_POST['post_id'], $_POST['subject'], MEDIA_CAT );
-            // wp_set_post_terms( $_POST['post_id'], $_POST['subject'], MEDIA_CAT, true );
+        if ( $_POST['subject_obj'] ) {
+            wp_set_object_terms( $_POST['post_id'], tax_arr($_POST['subject_obj']), MEDIA_CAT );
         }
 
         if ( !empty( $_FILES['my_image_upload']['tmp_name'] ) and $_FILES['my_image_upload']['error'] == 0 ) {
@@ -254,4 +254,13 @@ function press_net_post_delete() {
         echo 'Error!';
     }
     wp_die();
+}
+
+function tax_arr($tax_obj) {
+    $tax_arr = explode(',', $tax_obj);
+    $tax_arr_new = [];
+    foreach ($tax_arr as $tax) {
+        $tax_arr_new[] = (int) $tax;
+    }
+    return $tax_arr_new;
 }

@@ -83,14 +83,14 @@
                     <button type="button" name="btn-save-post-form" id="btn-save-post-form" class="button save-post-form">Save</button>
                 </div>
 
-                <input type="hidden" name="post_type" id="post_type" value="company" />
+                <input type="hidden" name="post_type" id="post_type" value="<?php echo COMPANY;?>" />
 
             </form>
         </div>
     </div>
     <div class="content-tab-user__content">
         <div class="content-tab-user__content__posts">
-            <?php press_net_get_user_posts('company', true); ?>
+            <?php press_net_get_user_posts(COMPANY, true); ?>
         </div>
     </div>
 </div>

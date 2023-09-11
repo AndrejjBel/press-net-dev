@@ -865,3 +865,120 @@ function press_net_requests_visit() {
         }
     }
 }
+
+function press_net_tax_list($slug, $hide_empty = true, $suff = '', $preff = '', $orderby = 'name', $order = 'ASC') {
+	$args = [
+		'taxonomy'      => [ $slug ],
+		'orderby'       => $orderby,
+		'order'         => $order,
+		'hide_empty'    => $hide_empty,
+	];
+	$terms = get_terms( $args );
+	if( $terms && ! is_wp_error( $terms ) ){
+		foreach( $terms as $term ){
+			echo $suff . $term->name . $preff;
+		}
+	}
+}
+
+// List of taxonomies
+function press_net_tax_list_id($slug, $hide_empty=true, $post_id='', $select_name=0,  $orderby='name', $order='ASC') {
+    $post_terms_id = [];
+    if ($post_id) {
+        $post_terms = get_the_terms( $post_id, $slug );
+        if( is_array( $post_terms  ) ){
+        	foreach( $post_terms as $post_term ){
+                $post_terms_id[] = $post_term->term_id;
+        	}
+        }
+    }
+	$args = [
+		'taxonomy'      => [ $slug ],
+        'orderby'       => $orderby,
+        'order'         => $order,
+		'hide_empty'    => $hide_empty,
+	];
+	$terms = get_terms( $args );
+	if( $terms && ! is_wp_error( $terms ) ){
+		foreach( $terms as $term ){
+            if ( $select_name ) {
+                echo '<'.$select_name.' id="'.$term->term_id.'">' . $term->name . '</'.$select_name.'>';
+            } else {
+                if ($post_id) {
+                    if ( in_array($term->term_id, $post_terms_id) ) {
+                        echo '<div class="option-tag" data-id="tag'.$term->term_id.$post_id.'">
+            			    <input type="checkbox" name="' . $term->name . '" id="tag'.$term->term_id.$post_id.'" value="'.$term->term_id.'" checked />
+            			    <label for="tag'.$term->term_id.$post_id.'">' . $term->name . '</label>
+            			</div>';
+                    } else {
+                        echo '<div class="option-tag" data-id="tag'.$term->term_id.$post_id.'">
+            			    <input type="checkbox" name="' . $term->name . '" id="tag'.$term->term_id.$post_id.'" value="'.$term->term_id.'" />
+            			    <label for="tag'.$term->term_id.$post_id.'">' . $term->name . '</label>
+            			</div>';
+                    }
+                } else {
+                    echo '<div class="option-tag" data-id="tag'.$term->term_id.$post_id.'">
+        			    <input type="checkbox" name="' . $term->name . '" id="tag'.$term->term_id.$post_id.'" value="'.$term->term_id.'" />
+        			    <label for="tag'.$term->term_id.$post_id.'">' . $term->name . '</label>
+        			</div>';
+                }
+            }
+		}
+	}
+}
+
+function press_net_request_list($slug, $orderby = 'name', $order = 'ASC', $hide_empty = true) {
+	$args = [
+		'taxonomy'      => [ $slug ],
+		'orderby'       => $orderby,
+		'order'         => $order,
+		'hide_empty'    => $hide_empty,
+	];
+	$terms = get_terms( $args );
+	if( $terms && ! is_wp_error( $terms ) ){
+		foreach( $terms as $term ){
+			if ( $term->parent == 0 ) {
+				$terms_child = get_term_children( $term->term_id, $slug );
+				if ( $terms_child ) {
+					echo '<span class="parent-child">' . $term->name . '</span>';
+					foreach( $terms as $term_par ) {
+						if ( $term_par->parent == $term->term_id ) {
+							echo '<span class="child" data-term-id="' . $term->term_id . ',' . $term_par->term_id . '">' . $term_par->name . '</span>';
+						}
+					}
+				} else {
+					echo '<span class="parent" data-term-id="' . $term->term_id . '">' . $term->name . '</span>';
+				}
+			}
+		}
+	}
+}
+
+function press_net_tax_post_id($slug, $post_id) {
+    $post_terms = get_the_terms( $post_id, $slug );
+    if( is_array( $post_terms  ) ){
+        $post_terms_id = [];
+    	foreach( $post_terms as $post_term ){
+            $post_terms_id[] = $post_term->term_id;
+    	}
+        return implode(",", $post_terms_id);
+    } else {
+        return '';
+    }
+}
+
+function press_net_tax_post_results($slug, $post_id) {
+    $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="#8c8c8c">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L1.70711 13.7071C1.31658 14.0976 0.683417 14.0976 0.292893 13.7071C-0.0976311 13.3166 -0.0976311 12.6834 0.292893 12.2929L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z" fill="black"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L13.7071 12.2929C14.0976 12.6834 14.0976 13.3166 13.7071 13.7071C13.3166 14.0976 12.6834 14.0976 12.2929 13.7071L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="black"/>
+        </svg>';
+    $post_terms = get_the_terms( $post_id, $slug );
+    if( is_array( $post_terms ) ){
+        $results = '';
+    	foreach( $post_terms as $post_term ){
+            $post_terms_id[] = $post_term->term_id;
+            $results .= '<span class="option-result" id="tag' . $post_term->term_id . $post_id . '">' . $post_term->name . $icon . '</span>';
+    	}
+        return $results;
+    }
+}

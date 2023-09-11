@@ -9,7 +9,9 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "dev": "webpack --mode development",
-    "prod": "webpack --mode production"
+    "dev-new": "webpack --mode development --config webpack.new.config.js",
+    "prod": "webpack --mode production",
+    "prod-new": "webpack --mode production --config webpack.new.config.js"
   },
   "dependencies": {},
   "devDependencies": {

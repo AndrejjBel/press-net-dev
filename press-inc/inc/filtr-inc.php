@@ -2,7 +2,12 @@
 add_action('wp_ajax_filtr_requests', 'press_net_filtr_requests');
 add_action('wp_ajax_nopriv_filtr_requests', 'press_net_filtr_requests');
 function press_net_filtr_requests() {
-    $post_type = $_POST['post_type'];
+    if ( $_POST['post_type'] == 'requests' ) {
+        $post_type = REQUESTS;
+    }
+    if ( $_POST['post_type'] == 'mass-media' ) {
+        $post_type = MEDIA;
+    }
     $orderby = 'date';
     $order = 'DESC';
     if ( !empty($_POST['sort']) ) {

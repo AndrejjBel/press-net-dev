@@ -77,10 +77,15 @@ function press_net_register_post_type_mass_media(){
     $tax_singular_name = 'Mass media category';
     $tax_slug = 'mass-media-cat';
 
+    $tag_name = 'Formats';
+    $tag_singular_name = 'Format';
+    $tag_slug = FORMAT;
+
     $post_type_name = 'Mass media';
     $post_type_singular_name = 'Mass media';
     $post_type_slug = 'mass-media';
     $menu_icon = 'dashicons-media-spreadsheet';
+    $tax_slugs = [$tax_slug, $tag_slug];
     register_taxonomy( $tax_slug, [ $post_type_slug ], [
 		'label'                 => '',
 		'labels'                => [
@@ -101,6 +106,34 @@ function press_net_register_post_type_mass_media(){
 		'description'           => '',
 		'public'                => true,
 		'hierarchical'          => true,
+		'rewrite'               => true,
+		'capabilities'          => array(),
+		'meta_box_cb'           => null,
+		'show_admin_column'     => true,
+		'show_in_rest'          => true,
+		'rest_base'             => null,
+	] );
+
+    register_taxonomy( $tag_slug, [ $post_type_slug ], [
+		'label'                 => '',
+		'labels'                => [
+			'name'              => esc_html__( $tag_name, 'press-net' ),
+			'singular_name'     => esc_html__( $tag_singular_name, 'press-net' ),
+			'search_items'      => esc_html__( 'Search ' . $tag_singular_name, 'press-net' ),
+			'all_items'         => esc_html__( 'All ' . $tag_name, 'press-net' ),
+			'view_item '        => esc_html__( 'View ' . $tag_singular_name, 'press-net' ),
+			'parent_item'       => esc_html__( 'Parent ' . $tag_singular_name, 'press-net' ),
+			'parent_item_colon' => esc_html__( 'Parent ' . $tag_singular_name . ':', 'press-net' ),
+			'edit_item'         => esc_html__( 'Edit ' . $tag_singular_name, 'press-net' ),
+			'update_item'       => esc_html__( 'Update ' . $tag_singular_name, 'press-net' ),
+			'add_new_item'      => esc_html__( 'Add ' . $tag_singular_name, 'press-net' ),
+			'new_item_name'     => esc_html__( 'New ' . $tag_singular_name, 'press-net' ),
+			'menu_name'         => esc_html__( $tag_name, 'press-net' ),
+			'back_to_items'     => esc_html__( '← Back to ' . $tag_name, 'press-net' ),
+		],
+		'description'           => '',
+		'public'                => true,
+		'hierarchical'          => false,
 		'rewrite'               => true,
 		'capabilities'          => array(),
 		'meta_box_cb'           => null,
@@ -134,7 +167,7 @@ function press_net_register_post_type_mass_media(){
 		'menu_icon'           => $menu_icon,
 		'hierarchical'        => false,
 		'supports'            => [ 'title', 'editor', 'author', 'thumbnail', 'custom-fields', 'comments', 'revisions' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [ $tax_slug ],
+		'taxonomies'          => $tax_slugs,
 		'has_archive'         => true,
 		'rewrite'             => true,
 		'query_var'           => true,

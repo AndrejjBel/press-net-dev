@@ -1,0 +1,167 @@
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    color: #002257;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+@media (max-width: 47.94em) {
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        margin-bottom: 10px;
+    }
+}
+
+h1, .h1 {
+    font-size: 36px;
+}
+@media (max-width: 74.9375em) {
+    h1, .h1 {
+        font-size: 30px;
+    }
+}
+
+h2, .h2 {
+    font-size: 30px;
+}
+@media (max-width: 74.9375em) {
+    h2, .h2 {
+        font-size: 24px;
+    }
+}
+
+h3, .h3 {
+    font-size: 24px;
+}
+@media (max-width: 74.9375em) {
+    h3, .h3 {
+        font-size: 20px;
+    }
+}
+
+h4, .h4 {
+    font-size: 22px;
+}
+@media (max-width: 74.9375em) {
+    h4, .h4 {
+        font-size: 18px;
+    }
+}
+
+h5, .h5 {
+    font-size: 20px;
+}
+@media (max-width: 74.9375em) {
+    h5, .h5 {
+        font-size: 16px;
+    }
+}
+
+h6, .h6 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 16px;
+    color: #161616;
+    font-weight: 400;
+    margin: 0 0 15px;
+    line-height: 1.875;
+}
+@media (max-width: 47.94em) {
+    p {
+        margin: 0 0 10px;
+    }
+}
+p:last-child {
+    margin-bottom: 0;
+}
+p:only-child {
+    margin-bottom: 0;
+}
+
+blockquote:last-child {
+    margin-bottom: 0;
+}
+
+blockquote:only-child {
+    margin-bottom: 0;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #002257;
+    text-decoration: underline;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .slick-slide {
+    outline: none;
+}
+
+button.button-primary {
+    color: var(--color-bg);
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    padding: 10px 39px;
+    font-size: 16px;
+    transition: 0.3s all;
+
+    @media (max-width: 369px) {
+        padding: 10px 30px;
+    }
+
+    &__nav {
+        padding: 2px 14px;
+        border-radius: 4px;
+    }
+
+    &:hover {
+        color: var(--color-primary);
+        background-color: var(--color-bg);
+    }
+}

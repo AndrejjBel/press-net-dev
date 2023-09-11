@@ -378,12 +378,71 @@ textarea.textarea {
 .field-select {
     position: relative;
 
+    & .results-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        background: #FFFFFF;
+        gap: 4px;
+        padding: 7px 11px;
+        min-height: 40px;
+
+        &__icon {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background: var(--bg-footer-color);
+            }
+        }
+
+        &__results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+
+            &__label {
+
+                & span {
+                    color: #757575;
+                }
+            }
+
+            & span.option-result {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                padding: 2px 6px;
+                border: 1px solid #ececec;
+                border-radius: 10px;
+                font-size: 14px;
+                line-height: 1.2;
+                background: var(--bg-footer-color);
+
+                & svg {
+                    width: 8px;
+                    height: 8px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
     &__options {
         position: absolute;
         width: 100%;
         max-height: 248px;
         overflow: auto;
-        top: 44px;
+        // bottom: -224px;
+        // top: 44px;
         left: 0;
         border: 1px solid #ececec;
         border-radius: 4px;
@@ -393,6 +452,21 @@ textarea.textarea {
         opacity: 0;
         z-index: 9;
         transition: 0.3s all;
+
+        &.oneselect {
+            top: 44px;
+        }
+
+        &.multiselect {
+            margin-top: 4px;
+            // bottom: -224px;
+        }
+
+        & input[type="text"] {
+            width: 98%;
+            margin: 0 1%;
+            margin-bottom: 4px;
+        }
 
         & span {
             display: block;
@@ -430,6 +504,68 @@ textarea.textarea {
         &.active {
             visibility: visible;
             opacity: 1;
+        }
+
+        & .option-tag {
+            position: relative;
+
+            &:nth-last-child(n+2) {
+                margin-bottom: 4px;
+            }
+
+            & input {
+                position: absolute;
+                opacity: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+
+                &:checked+label {
+                    background: var(--bg-footer-color);
+                }
+
+                &:hover+label {
+                    background: var(--bg-footer-color);
+                }
+            }
+
+            // & input[type="checkbox"]:checked+label {
+            //     background: var(--bg-footer-color);
+            // }
+
+            & label {
+                display: block;
+                padding: 4px 16px;
+                border-top: 1px solid #FFFFFF;
+                border-bottom: 1px solid #FFFFFF;
+                line-height: 1.6;
+                cursor: pointer;
+
+                &:nth-last-child(n+2) {
+                    margin-bottom: 4px;
+                }
+
+                &:hover {
+                    background: var(--bg-footer-color);
+                    border-top: 1px solid #ececec;
+                    border-bottom: 1px solid #ececec;
+                }
+
+                &.parent {
+                    font-weight: 600;
+                }
+
+                &.parent-child {
+                    pointer-events: none;
+                    background: var(--bg-footer-color);
+                    font-weight: 600;
+                }
+
+                &.child {
+                    padding-left: 30px;
+                }
+            }
         }
     }
 }

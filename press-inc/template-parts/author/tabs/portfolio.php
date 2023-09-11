@@ -71,7 +71,7 @@
                     <button type="button" name="btn-save-post-form" id="btn-save-post-form" class="button save-post-form">Save</button>
                 </div>
 
-                <input type="hidden" name="post_type" id="post_type" value="portfolio" />
+                <input type="hidden" name="post_type" id="post_type" value="<?php echo PORTFOLIO;?>" />
             </form>
         </div>
     </div>

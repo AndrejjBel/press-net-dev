@@ -59,9 +59,9 @@ get_header();
                                 <span>Company</span>
                                 <span class="field-group__title__required">*</span>
                             </div>
-                            <div class="input-group field-select">
+                            <div class="input-group field-select one">
                                 <input type="text" class="input" name="company_name" id="company_name" placeholder="Company" value="" required autocomplete="off" />
-                                <div class="field-select__options options-company">
+                                <div class="field-select__options oneselect options-company">
                                     <?php //press_net_user_media_parent_list('company'); ?>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@ get_header();
                                 <span>Choose existing Media</span>
                                 <span class="field-group__title__required">*</span>
                             </div>
-                            <div class="input-group field-select">
+                            <div class="input-group field-select one">
                                 <input type="text" class="input" name="media_name" id="media_name" placeholder="Media" value="" autocomplete="off" />
                                 <div class="field-select__options options-media">
                                     <?php //press_net_user_media_parent_list(); ?>
@@ -224,10 +224,10 @@ get_header();
                                     <span>Subject</span>
                                     <span class="field-group__title__required">*</span>
                                 </div>
-                                <div class="input-group field-select">
+                                <div class="input-group field-select one">
                                     <input type="text" class="input" name="subject" id="subject" placeholder="Subject" data-required="required" readonly />
                                     <div class="field-select__options">
-                                        <?php press_net_tax_list(MEDIA_CAT, '', '', false, '<span>', '</span>');?>
+                                        <?php press_net_tax_list(MEDIA_CAT, false, '<span>', '</span>');?>
                                     </div>
                                 </div>
                                 <span class="field-group__warning-input">Field is required</span>
@@ -237,17 +237,10 @@ get_header();
                                     <span>Format</span>
                                     <span class="field-group__title__required">*</span>
                                 </div>
-                                <div class="input-group field-select">
+                                <div class="input-group field-select one">
                                     <input type="text" class="input" name="format" id="format" placeholder="Format" value="" data-required="required" readonly />
                                     <div class="field-select__options">
-                                        <span>Newspaper</span>
-                                        <span>Magazine</span>
-                                        <span>Online media</span>
-                                        <span>Radio</span>
-                                        <span>TV</span>
-                                        <span>Youtube</span>
-                                        <span>Social Media</span>
-                                        <span>Other</span>
+                                        <?php press_net_tax_list(FORMAT, false, '<span>', '</span>');?>
                                     </div>
                                 </div>
                                 <span class="field-group__warning-input">Field is required</span>

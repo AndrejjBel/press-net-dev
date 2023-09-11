@@ -340,7 +340,7 @@ function btnCancelEditPost(divButtons) {
             btnCancelEditPost.forEach((btn) => {
                 btn.addEventListener('click', (e) => {
                     btn.form.querySelectorAll('input').forEach((input) => {
-                        if ( input.id !== 'post_type' && input.name !== 'my_image_upload' ) {
+                        if ( input.id !== 'post_type' && input.name !== 'my_image_upload' && input.id !== 'city_obj' && input.id !== 'subject' ) {
                             input.value = input.attributes.value.value
                         }
                     });

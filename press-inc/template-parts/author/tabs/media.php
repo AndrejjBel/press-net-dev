@@ -81,14 +81,26 @@
                 <div class="field-group-two mb24">
                     <div class="field-group">
                         <div class="field-group__title">
-                            <span>Subject</span>
+                            <span>Subjects</span>
                             <span class="field-group__title__required">*</span>
                         </div>
-                        <div class="input-group field-select">
-                            <input type="text" class="input" name="subject" id="subject" placeholder="Subject" required value="" readonly />
-                            <div class="field-select__options">
-                                <?php press_net_tax_list('mass-media-cat', '', '', false, '<span>', '</span>');?>
+                        <div class="input-group field-select multi">
+                            <div class="results-wrap">
+                                <div class="results-wrap__results" data-type="Subjects">
+                                    <div class="results-wrap__results__label"><span>Subjects:</span></div>
+                                </div>
+                                <div class="results-wrap__icon">
+                                    <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.73483 4.23483C2.88128 4.08839 3.11872 4.08839 3.26517 4.23483L6 6.96967L8.73484 4.23483C8.88128 4.08839 9.11872 4.08839 9.26516 4.23483C9.41161 4.38128 9.41161 4.61872 9.26516 4.76517L6.26517 7.76517C6.11872 7.91161 5.88128 7.91161 5.73483 7.76517L2.73483 4.76517C2.58839 4.61872 2.58839 4.38128 2.73483 4.23483Z" fill="#757575"></path>
+                                    </svg>
+                                </div>
                             </div>
+                            <!-- <input type="text" class="input" name="subject" id="subject" placeholder="Subject" required value="" readonly /> -->
+                            <div class="field-select__options multiselect">
+                                <!-- <input type="text" class="input" name="subject" id="subject" placeholder="Subject" /> -->
+                                <?php press_net_tax_list_id(MEDIA_CAT, false);?>
+                            </div>
+                            <input type="hidden" name="subject_obj" id="subject_obj" value="">
                         </div>
                         <span class="field-group__warning-input">Field is required</span>
                     </div>
@@ -97,18 +109,22 @@
                             <span>Format</span>
                             <span class="field-group__title__required">*</span>
                         </div>
-                        <div class="input-group field-select">
-                            <input type="text" class="input" name="format" id="format" placeholder="Format" required value="" readonly />
-                            <div class="field-select__options">
-                                <span>Newspaper</span>
-                                <span>Magazine</span>
-                                <span>Online media</span>
-                                <span>Radio</span>
-                                <span>TV</span>
-                                <span>Youtube</span>
-                                <span>Social Media</span>
-                                <span>Other</span>
+                        <div class="input-group field-select multi">
+                            <div class="results-wrap">
+                                <div class="results-wrap__results" data-type="Formats">
+                                    <div class="results-wrap__results__label"><span>Formats:</span></div>
+                                </div>
+                                <div class="results-wrap__icon">
+                                    <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.73483 4.23483C2.88128 4.08839 3.11872 4.08839 3.26517 4.23483L6 6.96967L8.73484 4.23483C8.88128 4.08839 9.11872 4.08839 9.26516 4.23483C9.41161 4.38128 9.41161 4.61872 9.26516 4.76517L6.26517 7.76517C6.11872 7.91161 5.88128 7.91161 5.73483 7.76517L2.73483 4.76517C2.58839 4.61872 2.58839 4.38128 2.73483 4.23483Z" fill="#757575"></path>
+                                    </svg>
+                                </div>
                             </div>
+                            <!-- <input type="text" class="input" name="format" id="format" placeholder="Format" required value="" readonly /> -->
+                            <div class="field-select__options">
+                                <?php press_net_tax_list_id(FORMAT, false);?>
+                            </div>
+                            <input type="hidden" name="format_obj" id="format_obj" value="">
                         </div>
                         <span class="field-group__warning-input">Field is required</span>
                     </div>
@@ -133,7 +149,7 @@
                     <button type="button" name="btn-save-post-form" id="btn-save-post-form" class="button save-post-form">Save</button>
                 </div>
 
-                <input type="hidden" name="post_type" id="post_type" value="mass-media" />
+                <input type="hidden" name="post_type" id="post_type" value="<?php echo MEDIA;?>" />
 
             </form>
         </div>

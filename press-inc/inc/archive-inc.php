@@ -232,36 +232,82 @@ function press_net_get_authors_media($type) {
 add_action('wp_ajax_press_net_post_list_json', 'press_net_media_company_list_json');
 add_action('wp_ajax_nopriv_press_net_post_list_json', 'press_net_media_company_list_json');
 function press_net_media_company_list_json() {
-    $post_type = $_POST['post_type'];
-    $orderby = 'title';
-    $order = 'ASC';
-    if ( $_POST['orderby'] ) {
-        $orderby = $_POST['orderby'];
+    if ( $_POST['term_slug'] ) {
+
+        $args_m = [
+    		'taxonomy'      => [ 'mass-media-cat' ],
+    		'hide_empty'    => false,
+    	];
+    	$terms_mm = get_terms( $args_m );
+        $terms_mm_arr = [];
+    	if( $terms_mm && ! is_wp_error( $terms_mm ) ){
+    		foreach( $terms_mm as $term ){
+                $terms_mm_arr[] = [
+                    'term_id' => $term->term_id,
+                    'term_name' => $term->name
+                ];
+    		}
+    	}
+
+        $args_t = [
+    		'taxonomy'      => [ 'format' ],
+    		'hide_empty'    => false,
+    	];
+    	$terms_t = get_terms( $args_t );
+        $terms_t_arr = [];
+    	if( $terms_t && ! is_wp_error( $terms_t ) ){
+    		foreach( $terms_t as $term ){
+                $terms_t_arr[] = [
+                    'term_id' => $term->term_id,
+                    'term_name' => $term->name
+                ];
+    		}
+    	}
+
+        $terms_mm_arr_fin = json_encode($terms_mm_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+        $terms_t_arr_fin = json_encode($terms_t_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+        echo $terms_arr_fin;
+        echo json_encode(array('media' => $terms_mm_arr_fin, 'format' => $terms_t_arr_fin));
+        wp_die();
     }
-    if ( $_POST['order'] ) {
-        $order = $_POST['order'];
-    }
-    $my_posts = get_posts( array(
-    	'numberposts' => -1,
-    	'orderby'     => $orderby, // title, date
-    	'order'       => $order, // ASC, DESC
-    	'post_type'   => $post_type,
-    	'suppress_filters' => true,
-    ) );
-    global $post;
-    if ( count($my_posts) > 0 ) {
-        $post_arr = [];
-        foreach( $my_posts as $post ){
-        	setup_postdata( $post );
-        	$post_arr[] = [
-                'id' => $post->ID,
-                'title' => get_the_title($post->ID)
-            ];
+    if ( $_POST['post_type'] ) {
+        if ( $_POST['post_type'] == 'company' ) {
+            $post_type = COMPANY;
         }
+        if ( $_POST['post_type'] == 'media' ) {
+            $post_type = MEDIA;
+        }
+        $orderby = 'title';
+        $order = 'ASC';
+        if ( $_POST['orderby'] ) {
+            $orderby = $_POST['orderby'];
+        }
+        if ( $_POST['order'] ) {
+            $order = $_POST['order'];
+        }
+        $my_posts = get_posts( array(
+        	'numberposts' => -1,
+        	'orderby'     => $orderby, // title, date
+        	'order'       => $order, // ASC, DESC
+        	'post_type'   => $post_type,
+        	'suppress_filters' => true,
+        ) );
+        global $post;
+        if ( count($my_posts) > 0 ) {
+            $post_arr = [];
+            foreach( $my_posts as $post ){
+            	setup_postdata( $post );
+            	$post_arr[] = [
+                    'id' => $post->ID,
+                    'title' => get_the_title($post->ID)
+                ];
+            }
+        }
+        wp_reset_postdata();
+        $post_arr_fin = json_encode($post_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+        echo $post_arr_fin;
+        wp_die();
     }
-    wp_reset_postdata();
-    $post_arr_fin = json_encode($post_arr, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
-    echo $post_arr_fin;
     wp_die();
 }
 
@@ -312,15 +358,15 @@ function press_net_post_list_json() { // $post_type='mass-media'
 
 function press_net_request_cat_list($number = 10, $offset = 0, $hide_empty = true) {
     $slug = REQUESTS_CAT;
-    $order = 'name';
-    $orderby = 'ASC';
+    $orderby = 'name';
+    $order = 'ASC';
     $icon = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M2.73483 4.23483C2.88128 4.08839 3.11872 4.08839 3.26517 4.23483L6 6.96967L8.73484 4.23483C8.88128 4.08839 9.11872 4.08839 9.26516 4.23483C9.41161 4.38128 9.41161 4.61872 9.26516 4.76517L6.26517 7.76517C6.11872 7.91161 5.88128 7.91161 5.73483 7.76517L2.73483 4.76517C2.58839 4.61872 2.58839 4.38128 2.73483 4.23483Z" fill="#BFBFBF"></path>
     </svg>';
 	$args = [
 		'taxonomy'      => [ $slug ],
-		// 'orderby'       => $orderby,
-		// 'order'         => $order,
+		'orderby'       => $orderby,
+		'order'         => $order,
 		'hide_empty'    => $hide_empty,
         'parent'        => 0,
         'number'        => $number,
@@ -389,15 +435,15 @@ function press_net_has_post_thumbnail($post_id) {
 
 function press_net_media_cat_list($hide_empty = false) { // $number = 10, $offset = 0
     $slug = MEDIA_CAT;
-    $order = 'name';
-    $orderby = 'ASC';
+    $orderby = 'name';
+    $order = 'ASC';
     $icon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 6L9 17L4 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>';
 	$args = [
 		'taxonomy'      => $slug,
-		// 'orderby'       => $orderby,
-		// 'order'         => $order,
+		'orderby'       => $orderby,
+		'order'         => $order,
 		'hide_empty'    => $hide_empty,
 	];
 	$terms = get_terms( $args );

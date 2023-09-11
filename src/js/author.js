@@ -346,3 +346,5 @@ function updateURL(params) {
         console.warn('History API not supported');
     }
 }
+
+// $(document).on('click', '.delete_button', function(){});

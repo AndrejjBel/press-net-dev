@@ -1,9 +1,9 @@
 <?php
 // Function for `register_new_user` action-hook, $user_id ID of the newly registered user.
 // add_action( 'register_new_user', 'press_net_register_new_user_action' );
-function press_net_register_new_user_action( $user_id ){
-	// action...
-}
+// function press_net_register_new_user_action( $user_id ){
+// 	// action...
+// }
 
 // Adding an Email check field
 add_action( 'show_user_profile', 'press_net_profile_fields' );

@@ -1,71 +1,81 @@
-function receivingPost(postType, orderbyCust, orderCust, input, itemDiv) {
-    const registerPage = document.querySelector('#register-page')
-    if ( registerPage ) {
+var dataMedia = [];
+var dataFormat;
+
+function receivingTerms() {
+    const authorPrimary = document.querySelector('#author-primary')
+    if ( authorPrimary ) {
+        const optionsMediaCat = document.querySelectorAll('.field-select__options.media-cat .field-select__options__wrap')
         jQuery(document).ready( function($){
             $.ajax({
                 url: "/wp-admin/admin-ajax.php",
                 method: 'post',
                 data: {
                     action: 'press_net_post_list_json',
-                    post_type: postType,
-                    orderby: orderbyCust,
-                    order: orderCust
+                    term_slug: 1
                 },
                 success: function (data) {
                     let dataJs = JSON.parse(data);
-                    renderFiltrItems(dataJs, itemDiv);
-                    filtrItemsSearch(input, dataJs, itemDiv);
+                    renderFiltrTermsItems(JSON.parse(dataJs.media), optionsMediaCat);
                 },
                 error: function (jqXHR, text, error) {}
             });
         });
     }
 }
+// receivingTerms();
 
-const renderItems = () => {
-    const registerPage = document.querySelector('#register-page')
-    if ( registerPage ) {
-        const optionsCompany = document.querySelector('.field-select__options.options-company')
-        const companyName = document.querySelector('#company_name')
-        const optionsMedia = document.querySelector('.field-select__options.options-media')
-        const mediaName = document.querySelector('#media_name')
-        receivingPost('company', '', '', companyName, optionsCompany);
-        receivingPost('mass-media', '', '', mediaName, optionsMedia);
-    }
+function dataSet(data) {
+    dataFormat = data.format;
 }
-renderItems();
 
-function renderFiltrItems(items, itemDiv) {
-    itemDiv.innerHTML = '';
-    if ( items ) {
-        items.forEach((item) => {
-            itemDiv.insertAdjacentHTML(
+function renderFiltrTermsItems(items, itemDiv) {
+    itemDiv.forEach((item) => {
+        item.innerHTML = '';
+        if ( items ) {
+            items.forEach((itemEl) => {
+                item.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="option-tag" data-id="tag${itemEl.term_id}${item.dataset.post}">
+        			    <input type="checkbox" name="${itemEl.term_name}" id="tag${itemEl.term_id}${item.dataset.post}" value="${itemEl.term_id}" />
+        			    <label for="tag${itemEl.term_id}${item.dataset.post}">${itemEl.term_name}</label>
+        			</div>`
+                )
+            });
+        } else {
+            item.insertAdjacentHTML(
                 "beforeend",
-                `<span data-post-id="${item.id}">${item.title}</span>`
-            )
-        });
-    } else {
-        itemDiv.insertAdjacentHTML(
-            "beforeend",
-            `<span data-post-id="no">No items</span>`
-        );
-    }
-    fieldSelectProces( itemDiv.children );
+                `<span data-post-id="no">No items</span>`
+            );
+        }
+        fieldTermsSelectProces( item.children );
+        filtrTermsItemsSearch(item.previousElementSibling, items, item);
+    });
 }
 
-function filtrItemsSearch(input, items, itemDiv) {
+function filtrTermsItemsSearch(input, items, itemDiv) {
     const inputIt = input
+    console.log(inputIt);
     if (input) {
         inputIt.addEventListener('input', (e) => {
             const newItems = items.filter((item) => {
-                return item.title.toLowerCase().includes(e.target.value.toLowerCase())
+                return item.term_name.toLowerCase().includes(e.target.value.toLowerCase())
             })
-            renderFiltrItems(newItems, itemDiv);
+            // renderFiltrTermsItems(newItems, itemDiv);
+            itemDiv.innerHTML = '';
+            newItems.forEach((itemEl) => {
+                itemDiv.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="option-tag" data-id="tag${itemEl.term_id}${itemDiv.dataset.post}">
+        			    <input type="checkbox" name="${itemEl.term_name}" id="tag${itemEl.term_id}${itemDiv.dataset.post}" value="${itemEl.term_id}" />
+        			    <label for="tag${itemEl.term_id}${itemDiv.dataset.post}">${itemEl.term_name}</label>
+        			</div>`
+                )
+            });
         })
     }
 }
 
-function fieldSelectProces( items ) {
+function fieldTermsSelectProces( items ) {
     for (const node of items) {
         node.addEventListener('click', function() {
             node.parentElement.previousElementSibling.value = node.innerText
@@ -78,26 +88,3 @@ function fieldSelectProces( items ) {
         })
     }
 }
-
-jQuery(document).ready( function($){
-    $(".suggest").suggestions({
-        token: "69cff3e74a71d5ece8579d27a89e9532c70bcbf5",
-        type: "ADDRESS",
-        hint: "Select an option or continue typing",
-        language: "en",
-        bounds: "city-settlement",
-        constraints: {
-            locations: { country: "*" }
-        },
-        noSuggestionsHint: "Unknown city",
-        onSelect: function(suggestion) {
-            // console.log("data", suggestion);
-            var sugJson = JSON.stringify(suggestion);
-            $(this).next().next().val(sugJson);
-            // $('.addr0').val(suggestion.unrestricted_value);
-            // $('.addr2').val(suggestion.data.country);
-            // $('.addr3').val(suggestion.data.city);
-            // $('.addr10').val(suggestion.data.geo_lat + ',' + suggestion.data.geo_lon);
-        }
-    });
-});
